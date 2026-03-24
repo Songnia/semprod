@@ -1759,8 +1759,9 @@
                 margin-left: 15px;
             }
 
-            .dropdown:hover .dropdown-menu,
-            .dropdown.active .dropdown-menu {
+            .dropdown.active .dropdown-menu,
+            .lang-switch.active .dropdown-menu {
+                display: block;
                 opacity: 1;
                 visibility: visible;
                 transform: translateY(0);
@@ -2031,6 +2032,10 @@
 
             .dropdown-menu {
                 display: none;
+            }
+
+            .lang-switch.active .dropdown-menu {
+                display: block !important;
             }
 
             .about-content,
