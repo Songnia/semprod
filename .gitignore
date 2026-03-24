@@ -1,0 +1,26 @@
+# SEM Production Git Ignore
+
+# Large Binary Files
+*.zip
+*.rar
+*.7z
+
+# Backup and Save Directories
+save*/
+saves/
+FILES/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+node_modules/
+dist/
+build/

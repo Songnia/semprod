@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+    <title>Nos produits</title>
+    <script src="js/script.js" defer></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="qui-sommes-nous.html">Qui Sommes-Nous ? <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise">Notre Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire">Notre Histoire</a></li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur">Notre Chaine de Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur">Le Promoteur</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#products-section">Produits <i class="fas fa-chevron-down"></i></a>
+                            <script src="js/product-data.js"></script>
+                             <script>
+                                // Fonction pour afficher les détails du produit
+                                function displayProductMenu() {
+                                    const product = productsData;
+                                    console.log(product)
+                                    const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                    if (product) {
+                                        container_dropdown_menu.innerHTML = product.map(product =>`
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names.fr}</a></li>
+                                        `).join('');
+                                        return;
+                                    }
+                                }
+                                document.addEventListener('DOMContentLoaded', displayProductMenu);
+                             </script>
+                             <ul class="dropdown-menu" id="dropdown-menu">
+
+                             </ul>
+                    </li>
+                    <li><a href="evenements.html">Evenements</a></li>
+                    <li class="dropdown">
+                        <a href="technologie.html">Notre Technologie  <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche">La recherche</a></li>
+                            <li><a href="technologie.html#la-Conception-Fabrication">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="espritngon.html">Esprit Ngon  <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits">  Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries">Patisseries</a></li>
+                        </ul>
+                    </li>  
+                    <li><a href="photos.html">Nos Photos</a></li>                  
+                    <li><a href="videos.html">Nos Vidéos</a></li>
+                    <li><a href="contact.html">Nous contacter</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>                  
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->    
+    <!-- Products Section -->
+    <section class="products-section" id="products-section">
+        <div class="container">
+                <div class="section-title">
+                    <h2>Nos produits</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa Cum sociis natoque penatibus.</p>
+                </div>
+                <div class="products-grid" id="products-grid">
+                                    <!-- Produit 1 -->
+                <div class="product-card" data-category="graines">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1615485500606-f3d40e5002e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="product-content">
+                        <h3 class="product-name">Graines de Sésame Bio</h3>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                        <div class="product-price">2.500 FCFA</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn-whatsapp" data-product="Graines de Sésame Bio" data-price="2500">
+                                <i class="fab fa-whatsapp"></i> Commander
+                            </a>
+                            <a href="#" class="btn-cart add-to-cart" data-product="Graines de Sésame Bio" data-price="2500" data-image="https://images.unsplash.com/photo-1615485500606-f3d40e5002e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80">
+                                <i class="fas fa-shopping-cart"></i> Panier
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Produit 1 -->
+                    <div class="product-card" data-category="nutri-Sante">
+                        <a href=" detailproduit.html?id=1">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/Pack-Huile-Santé-1L-D.png);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Pack Huile Santé</h3>
+                            <p class="product-description">Huile Précieuse de graines de Courge Tropicale “Ngon” 250ml</p>
+                            
+                            <div class="product-price">
+                                9.000 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Pack Huile Santé" data-price="9000">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-cart btn-secondary btn-whatsapp" data-product="Pack Huile Santé" data-price="9000">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 2 -->
+                    <div class="product-card" data-category="nutri-Sante">
+                        <a href=" detailproduit.html?id=2">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/HUILE\ SANTE\ 250\ NEW\ PACK.jpg);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Pack Huile Santé</h3>
+                            <p class="product-description">Huile Précieuse de graines de Courge Tropicale “Ngon” 250ml</p>
+                            
+                            <div class="product-price">
+                                9.000 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Pack Huile Santé" data-price="9000">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Pack Huile Santé" data-price="9000">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Produit 3 -->
+                    <div class="product-card" data-category="nutridiet">
+                        <a href=" detailproduit.html?id=3">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/apero-2-D.png);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Apéro Ngon</h3>
+                            <p class="product-description">Graines biologiques de courge tropicales torréfiées et salées, Sans sucre</p>
+                            
+                            <div class="product-price">
+                                2.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Apéro Ngon" data-price="2500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Apéro Ngon" data-price="2500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 4 -->
+                    <div class="product-card" data-category="nutridiet">
+                        <a href=" detailproduit.html?id=4">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/Roasty-D.png);">
+                            <div class="product-badge">Graines biologiques</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Roasty Ngon</h3>
+                            <p class="product-description">Pistache Africaine Torréfiée Au Gingembre</p>
+                            
+                            <div class="product-price">
+                                3.000 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Roasty Ngon" data-price="3000">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Roasty Ngon" data-price="3000">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Produit 5 -->
+                    <div class="product-card" data-category="snacks">
+                        <a href=" detailproduit.html?id=5">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/karaNgon-250.jpg);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Kara Ngon 250g</h3>
+                            <p class="product-description">Pistache Africaine Soufflée – Caramélisée</p>
+                            
+                            <div class="product-price">
+                                2.600 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Kara Ngon 250g" data-price="2600">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Kara Ngon 250g" data-price="2600">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 6 -->
+                    <div class="product-card" data-category="snacks">
+                        <a href=" detailproduit.html?id=6">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/karaNgon-200.jpg);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Kara Ngon 220g</h3>
+                            <p class="product-description">Pistache Africaine Soufflée – Caramélisée</p>
+                            
+                            <div class="product-price">
+                                2.600 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Kara Ngon 220g" data-price="2600">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Kara Ngon 220g" data-price="2600">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 7 -->
+                    <div class="product-card" data-category="Foods And snacks">
+                        <a href=" detailproduit.html?id=7">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/karaNgon-50.jpg);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Kara Ngon 50g – en lot de 12 sachets</h3>
+                            <p class="product-description">Pistache Africaine Soufflée – Caramélisée</p>
+                            
+                            <div class="product-price">
+                                550 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Kara Ngon 50g – en lot de 12 sachets" data-price="550">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Kara Ngon 50g – en lot de 12 sachets" data-price="550">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 8 -->
+                    <div class="product-card" data-category="foods">
+                        <a href=" detailproduit.html?id=8">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/CookiesNgon.jpg);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Cookies Ngon – en lot de 12 sachets (48 pieces)</h3>
+                            <p class="product-description">Enrichi A la Farine de Pistache Ngon</p>
+                            
+                            <div class="product-price">
+                                600 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Cookies Ngon – en lot de 12 sachets (48 pieces)" data-price="600">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Cookies Ngon – en lot de 12 sachets (48 pieces)" data-price="600">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 9 -->
+                    <div class="product-card" data-category="nutridiet">
+                        <a href=" detailproduit.html?id=9">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/Sable-ngon.png);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Biscuit Sablé Ngon</h3>
+                            <p class="product-description">A la Farine de Pistache Africaine sans gluten, sucre réduit</p>
+                            
+                            <div class="product-price">
+                                1.700 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Biscuit Sablé Ngon" data-price="1700">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Biscuit Sablé Ngon" data-price="1700">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 10 -->
+                    <div class="product-card" data-category="cosmetique">
+                        <a href=" detailproduit.html?id=10">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/huilBeauteNgon.png);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Patiss Ngon</h3>
+                            <p class="product-description">Extra Fine de graine de Courges Tropicales et Biologiques</p>
+                            
+                            <div class="product-price">
+                                4.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Huile de Beauté Ngon 50ml" data-price="4500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Huile de Beauté Ngon 50ml" data-price="4500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 11 -->
+                    <div class="product-card" data-category="cosmetique">
+                        <a href=" detailproduit.html?id=11">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/huilBeauteNgon.png);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Huile de Beauté Ngon 50ml</h3>
+                            <p class="product-description">Extra Fine de graine de Courges Tropicales et Biologiques</p>
+                            
+                            <div class="product-price">
+                                4.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Huile de Beauté Ngon 50ml" data-price="4500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Huile de Beauté Ngon 50ml" data-price="4500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 12 -->
+                    <div class="product-card" data-category="cosmetique">
+                        <a href=" detailproduit.html?id=12">
+                        <div class="product-img" style="background-image: url(assets/images/Produits/savonKariteNgon.png);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Savon Karité Ngon</h3>
+                            <p class="product-description">Enrichi au beurre de Karité, surgraissé a l'Huile Biologique de graine de courge tropicale</p>
+                            
+                            <div class="product-price">
+                                1.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Savon Karité Ngon" data-price="1500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Savon Karité Ngon" data-price="1500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 13 -->
+                    <div class="product-card" data-category="nutrition+">
+                        <a href=" detailproduit.html?id=13">
+                        <div class="product-img" style="background-image: url(assets/images/Produits);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Amande Ngon 5Litre</h3>
+                            <p class="product-description">Boisson végétale à base d'amandes biologiques - Format familial</p>
+                            
+                            <div class="product-price">
+                                17.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 14 -->
+                    <div class="product-card" data-category="nutrition+">
+                        <a href=" detailproduit.html?id=14">
+                        <div class="product-img" style="background-image: url(assets/images/Produits);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Farine Ngon 5Litre</h3>
+                            <p class="product-description">Boisson végétale à base d'amandes biologiques - Format familial</p>
+                            
+                            <div class="product-price">
+                                17.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 15 -->
+                    <div class="product-card" data-category="nutrition+">
+                        <a href=" detailproduit.html?id=15">
+                        <div class="product-img" style="background-image: url(assets/images/Produits);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Farine Ngon 5Litre</h3>
+                            <p class="product-description">Boisson végétale à base d'amandes biologiques - Format familial</p>
+                            
+                            <div class="product-price">
+                                17.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 16 -->
+                    <div class="product-card" data-category="nutrition+">
+                        <a href=" detailproduit.html?id=16">
+                        <div class="product-img" style="background-image: url(assets/images/Produits);">
+                            <div class="product-badge">BIO</div>
+                        </div></a>
+                        <div class="product-content">
+                            <h3 class="product-name">Farine Ngon 5Litre</h3>
+                            <p class="product-description">Boisson végétale à base d'amandes biologiques - Format familial</p>
+                            
+                            <div class="product-price">
+                                17.500 <span class="price-currency">FCFA</span>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <button class="btn btn-primary add-to-cart" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                </button>
+                                <button class="btn btn-secondary btn-whatsapp" data-product="Amande Ngon 5Litre" data-price="17500">
+                                    <i class="fab fa-whatsapp"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+<!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout btn-checkout-platform" id="checkout-whatsapp">
+            Commander maintenant
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform" >&times;</span>
+            <h2>Vous serez mis en relation avec notre service Commercial</h2>
+            <span>Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                    <div class="section-choice">
+                            <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Continuer
+                            </div>  
+                        <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->                  
+                    </div>
+                    <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail" >&times;</span>
+            <h2>Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone" >
+                <label for="command-guests">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+                
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i>
+                    Commander
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+</body>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                    <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies innovantes tout en préservant les traditions.</p>
+                    <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                        <i class="fab fa-whatsapp"> </i>  Nous laisser un message 
+                    </a>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation Rapide</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                        <li><a href="index.html#products-section">Nos Produits</a></li>
+                        <li><a href="evenements.html">Nos Événements</a></li>
+                        <li><a href="technologie.html">Notre Technologie</a></li>
+                        <li><a href="videos.html">Nos Vidéos</a></li>
+                        <li><a href="photos.html">Nos Photos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Coordonnées</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                        <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                        <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                        <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                    </ul>
+                    <div class="container-social-icons">
+                        <div class="container-icon">
+                            <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                        </div>
+                        <div class="container-icon">
+                            <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                        </div>
+                        
+                        <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                        <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                       <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+    
+
+ 
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEM PRODUCTION - Innovation au service de la tradition</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">   
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <script src="js/script.js" defer></script>
+    <script src="js/product-data.js"></script>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header id="header-id">
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">    
+        <div class="content-image-etoiles">
+            <a href="index.html" class="logo logoeurogon"><img src="assets/images/logoNgon.png" alt=""></a>
+            <img src="assets/images/5etoiles-ok.png" alt="">
+        </div>    
+        <div class="container hero-container">             
+            <div class="hero-content">
+                <p class="subtitle">BIENVENUE CHEZ SEM PRODUCTION</p>
+                <h1>Un Trésor naturel</h1>
+                <p>
+                    Issus d'une longue recherche, les produits de la marque <strong>Ngon</strong> de SEM Production proviennent du décorticage industriel et de la transformation des graines de courge à coque dure, propcommand à certains terroirs du Cameroun.<br>
+                    Communément appelés <em>pistache long grain</em>, leur nom scientifique est <strong>Cucumeropsis mannii</strong>.<br>
+                    Ils sont produits par une agriculture biologique (+) avec récolte tous les deux ans.<br>
+                    C'est la reine des curcubitacées ; elle possède de nombreuses vertus exceptionnelles en santé, cosmétique et diététique.
+                </p>
+                <a href="produits.html" class="btn">Découvrir nos produits</a>
+            </div>
+            <div class="hero-image">
+                <img src="/assets/images/Pack Complet.png" alt="SEM PRODUCTION - Produits naturels">
+            </div>
+        </div>
+    </section>
+
+  <!-- Command Section -->
+        <section class="try-today container">
+            <div class="promo-item large promo-item--pizza content-image" style="background-image: url('assets/images/');">
+                <div class="promo-text">
+                    <!--<span>Une</span>-->
+                    <h2>UNE GRAINE</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus quasi perferendis reprehenderit similique aut ut dignissimos id? Recusandae id odio, fugit consequatur, excepturi eaque fuga voluptas odit corporis praesentium sapiente.</p>
+                    <a href="technologie.html" class="btn btn-secondary">Voir La recherche</a>
+                </div>
+            </div>
+            <div class="promo-item small promo-item--cake content-image" style="background-image: url('assets/images/Gallerie/sem2.jpg');">
+                 <div class="promo-text">
+                    <!--<span>Une</span>-->
+                    <h3>UNE TECHNOLOGIE</h3>
+                    <!--<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus quasi perferendis reprehenderit similique aut ut dignissimos id? Recusandae id odio, fugit consequatur, excepturi eaque fuga voluptas odit corporis praesentium sapiente.</p>-->
+                    <a href="technologie.html#la-Machine-specialisation" class="btn btn-outline-dark">Notre technologie</a>
+                </div>
+            </div>
+            <div class="promo-item small promo-item--chili content-image" style="background-image: url('assets/images/Pack\ Complet\ \(2\).png');">
+                <div class="promo-text">
+                    <span>20</span>
+                    <h3>PRODUITS</h3>
+                    <!--<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus quasi perferendis reprehenderit similique aut ut dignissimos id? Recusandae id odio, fugit consequatur, excepturi eaque fuga voluptas odit corporis praesentium sapiente.</p>-->
+                    <a href="#products-section" class="btn btn-secondary">Nos Produits</a>
+                </div>
+            </div>
+        </section> 
+    <!-- Products Section -->
+    <section class="products-section" id="products-section">
+        <div class="container">
+                <div class="section-title">
+                    <h2>Nos produits</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa Cum sociis natoque penatibus.</p>
+                </div>
+                <div class="products-grid" id="products-grid">
+                </div>
+        </div>
+    </section>    
+
+    <!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+                <i class="fas fa-times" onclick="closeCart()"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout" id="checkout-btn" onclick="openCommandeModal()">
+            <i class="fab fa-whatsapp"></i>  Commander via WhatsApp
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal" id="checkout-platform">
+        <div class="modal-content">
+            <span class="close-btn" >&times;</span>
+            <h2>Passer votre commande par</h2>
+            <span>Sélectionnez comment vous souhaitez passer votre commande.</span>
+            <div id="platform-oprtion" class="platform-option">
+                    <a href="mailto:contact@sem-prod.com" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;">
+                        <i class="fas fa-envelope" style="font-size:100px;padding: 20px; color:white;"></i>
+                    </a>
+
+                    <a href="https://wa.me/237699323761" title="Commander par WhatsApp" target="_blank" style="background-color: var(--primary-color) ; border-radius: 15px;">
+                        <i class="fab fa-whatsapp" style="font-size:100px;padding: 20px; color: white; "></i>
+                    </a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de choix de plateforme -->
+    <!--<div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="platform-close">&times;</span>
+            <h2>Choisissez votre plateforme de commande</h2>
+             <p>Sélectionnez comment vous souhaitez passer votre commande</p>
+            <div class="platform-options">
+                <div class="platform-option platform-email" id="platform-email">
+                    <i class="fas fa-envelope platform-icon"></i>
+                    <div class="platform-text">Commander par Email</div>
+                </div>
+                <div class="platform-option platform-whatsapp" id="platform-whatsapp">
+                    <i class="fab fa-whatsapp platform-icon"></i>
+                    <div class="platform-text">Commander par WhatsApp</div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" >&times;</span>
+            <h2>Make a commande</h2>
+            <form id="commande-form">
+                <label for="command">E-mail:</label>
+                <input type="text" id="command" name="email" required>
+                <label for="command">Name:</label>
+                <input type="text" id="command" name="name" required>
+                <label for="command-phone">Phone:</label>
+                <input type="tel" id="command-phone" name="phone" >
+                <label for="command-guests">Vore commande:</label>
+                <textarea id="commande-details" name="commande-details" readonly></textarea>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Commander
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+    <!--<div id="email-modal" class="">
+        <div class="modal-content">
+            <span class="close-btn" id="email-close">&times;</span>
+            <h2>Commande par Email</h2>
+            <p>Remplissez vos informations pour recevoir votre commande par email</p>
+            
+            <div class="order-summary" id="email-order-summary">
+            </div>
+            
+            <form id="email-order-form">
+                <div class="form-group">
+                    <label for="customer-name">Nom complet *</label>
+                    <input type="text" id="customer-name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-email">Email *</label>
+                    <input type="email" id="customer-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-phone">Téléphone</label>
+                    <input type="tel" id="customer-phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-address">Adresse de livraison</label>
+                    <textarea id="customer-address" name="address"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-message">Message supplémentaire</label>
+                    <textarea id="customer-message" name="message" placeholder="Instructions spéciales, notes..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Envoyer la commande
+                </button>
+            </form>
+        </div>
+    </div>-->
+
+    <!-- Notification 
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i> Votre commande a été envoyée avec succès!
+    </div>-->
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                    <p>Depuis ***, nous créons des produits naturels de qualité en utilisant des technologies innovantes tout en préservant les traditions.</p>
+                    <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                        <i class="fab fa-whatsapp"> </i>  Nous laisser un message 
+                    </a>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation Rapide</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                        <li><a href="produits.html">Nos Produits</a></li>
+                        <li><a href="evenements.html">Nos Événements</a></li>
+                        <li><a href="technologie.html">Notre Technologie</a></li>
+                        <li><a href="videos.html">Nos Vidéos</a></li>
+                        <li><a href="photos.html">Nos Photos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Coordonnées</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                        <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                        <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                        <li><i class="fas fa-envelope"></i> contact@sem-prod.com</li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                        <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                       <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

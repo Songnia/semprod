@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+
+    <!-- Scripts i18n -->
+    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n.js"></script>
+
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #ff9800;
+            --accent-color: #4caf50;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-heading: 'Georgia', serif;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-color);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        .about-page .container {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .container .content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 20px 0;
+        }
+
+        #entreprise {
+            padding: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Navigation de page */
+        .page-nav {
+            height: 50vh;
+            position: sticky;
+            top: 50px;
+            width: 220px;
+            background-color: white;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            margin-bottom: 40px;
+            padding: 10px;
+        }
+
+        .page-nav-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px 0;
+        }
+
+        .page-nav-link {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .page-nav-link:hover,
+        .page-nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Sections de contenu */
+        .about-section {
+            scroll-margin-top: 120px;
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .section-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Layouts de contenu */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .content-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-family: var(--font-heading);
+        }
+
+        .content-text p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .content-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .content-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .content-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Chaîne de valeur */
+        .value-chain {
+            background-color: var(--light-color);
+            padding: 60px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .value-chain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-step {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .value-step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+
+        .value-step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .value-step p {
+            color: #666;
+        }
+
+        /* Promoteur */
+        .founder-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+            background-color: var(--light-color);
+            padding: 60px;
+            border-radius: 10px;
+        }
+
+        .founder-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .founder-quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #555;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .founder-signature {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .content-grid,
+            .founder-section {
+                grid-template-columns: 1fr;
+            }
+
+            .value-chain-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-nav {
+                display: none;
+            }
+
+            .page-nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .page-nav-link {
+                width: 100%;
+                text-align: center;
+            }
+
+            .value-chain,
+            .founder-section {
+                padding: 40px 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="qui-sommes-nous.html"><span data-i18n="nav.about">Qui Sommes-Nous ?</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise" data-i18n="nav.about.company">Notre
+                                    Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire" data-i18n="nav.about.history">Notre Histoire</a>
+                            </li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur" data-i18n="nav.about.value_chain">Notre
+                                    Chaine de Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur" data-i18n="nav.about.promoter">Le Promoteur</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#products-section"><span data-i18n="nav.products">Produits</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <script src="js/product-data.js"></script>
+                        <script>
+                            // Fonction pour afficher les détails du produit
+                            function displayProductMenu() {
+                                const product = productsData;
+                                const lang = localStorage.getItem('siteLang') || 'fr';
+                                const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                if (product) {
+                                    container_dropdown_menu.innerHTML = product.map(product => `
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names[lang] || product.names.fr}</a></li>
+                                        `).join('');
+                                    return;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', displayProductMenu);
+                            window.addEventListener('languageChanged', displayProductMenu);
+                        </script>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Evenements</a></li>
+                    <li class="dropdown">
+                        <a href="technologie.html"><span data-i18n="nav.tech">Notre Technologie</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche" data-i18n="nav.tech.research">La recherche</a>
+                            </li>
+                            <li><a href="technologie.html#la-Conception-Fabrication"
+                                    data-i18n="nav.tech.design">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation"
+                                    data-i18n="nav.tech.machine">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="espritngon.html"><span data-i18n="nav.spirit">Esprit Ngon</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits"
+                                    data-i18n="nav.spirit.history">Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette" data-i18n="nav.spirit.recipe">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries" data-i18n="nav.spirit.pastries">Patisseries</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Nous contacter</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="lang-switch dropdown">
+                    <a href="#" class="current-lang-display">
+                        <span id="current-lang-icon">🇫🇷</span> 
+                        <span id="current-lang-text">FR</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                    </ul>
+                </div>
+                
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Page "Qui Sommes-Nous ?" -->
+    <section class="about-page">
+        <div class="container">
+            <!-- Navigation de page -->
+            <nav class="page-nav">
+                <div class="page-nav-container">
+                    <a href="#entreprise" class="page-nav-link active" data-i18n="nav.about.company">Notre
+                        Entreprise</a>
+                    <a href="#histoire" class="page-nav-link" data-i18n="nav.about.history">Notre Histoire</a>
+                    <a href="#chaine-valeur" class="page-nav-link" data-i18n="nav.about.value_chain">Notre Chaîne de
+                        Valeur</a>
+                    <a href="#promoteur" class="page-nav-link" data-i18n="nav.about.promoter">Le Promoteur</a>
+                </div>
+            </nav>
+            <div class="content">
+
+                <!-- Section 1: Notre Entreprise -->
+                <section id="entreprise" class="about-section">
+                    <div class="section-header">
+                        <h2 data-i18n="about.s1.title">Bienvenue Chez SEM Production</h2>
+                        <p data-i18n="about.s1.subtitle">Découvrez notre mission, notre vision et notre engagement pour
+                            la qualité</p>
+                    </div>
+                    <div class="content-image">
+                        <img src="assets/images/emplysem-ConvertImage.jpg" alt="Installations SEM Production">
+                    </div>
+                    <div class="content-flex">
+                        <div class="content-text">
+                            <div class="section-header">
+                                <h2 data-i18n="nav.about.company">Notre Entreprise</h2>
+                            </div>
+                            <p data-i18n="about.s1.p1">
+                                SEM production, nous sommes la première industrie de décorticage de graines de courge à
+                                coque dure.<br>
+                                Cette graine fait partie de la famille botanique des cucurbitacées (concombres, melon,
+                                courge…).<br>
+                                Son nom scientifique est : <strong>cucumeropssis mannii</strong>, elle pousse en Afrique
+                                sub tropicale et est connue sous les appellations de pistache africaine, graines de
+                                courge tropicale, communément appelée pistache au Cameroun, egusi-itoo au Nigeria-Ghana,
+                                Mbika au Congo.
+                            </p>
+                            <p data-i18n="about.s1.p2">
+                                Par ses nombreuses vertus c’est la <strong>Reine des graines de courge</strong>, qui
+                                n’avait pu être mise en valeur par l’absence de technologie appropriée.<br>
+                                C’est maintenant chose faite par SEM production qui a développé sur trois décennies la
+                                technologie appropriée.<br>
+                                Nous décortiquons et mettons en valeur cette graine dans une chaine industrielle ceci
+                                via un procédé unique avec une précision supérieure à <strong>97%</strong>.
+                            </p>
+                            <p data-i18n="about.s1.p3">
+                                Nous produisons les graines de courge décortiquées, sélectionnées et calibrées,<br>
+                                l’Huile Précieuse pour la diététique et santé,<br>
+                                l’Huile Précieuse pour la Cosmétique (peau et cheveux),<br>
+                                la farine allégée en huile, véritable super aliment.
+                            </p>
+                            <p data-i18n="about.s1.p4">
+                                SEM Production entend contribuer au développement d’une véritable filière
+                                agro-industrielle pour l’exploitation de cette graine aux immenses vertus localement et
+                                à l’export.
+                            </p>
+                            <p data-i18n="about.s1.p5">
+                                Notre siège social est basé à <strong>Douala</strong>, capitale économique du Cameroun
+                                et notre usine est située dans la banlieue de <strong>Yaoundé</strong> capitale
+                                politique du Cameroun.<br>
+                                L’exploitation a débuté en <strong>Juillet 2017</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <div class="content-image">
+                    <img src="assets/images/Gallerie/semv1(1).jpg" alt="Installations SEM Production">
+                </div>
+                <!-- Section 2: Notre Histoire -->
+                <section id="histoire" class="about-section">
+                    <div class="section-header">
+                        <h2 data-i18n="nav.about.history">Notre Histoire</h2>
+                        <p data-i18n="about.s2.subtitle">Un parcours marqué par l'innovation et l'engagement</p>
+                    </div>
+
+                    <div class="content-flex">
+                        <div class="content-text">
+                            <!--<h3>Nos Débuts</h3>-->
+                            <p>
+                                Tout est parti d’une idée, d’une passion, puis s’en est suivi dès 1988 un croquis de
+                                conception, alors qu’à cette période l’auteur, Samuel Safo Tchofo, est un jeune
+                                ingénieur d’opérations pétrolières affecté au Gabon.<br>
+                                L’idée ici était de réduire de manière significative la pénibilité liée au décorticage
+                                des graines de courges appelées « pistache » ou « égusi ». À cette époque, il n’existait
+                                pas de système fiable et d’efficacité reconnue pour accomplir cette tâche sur nos
+                                produits locaux. De nombreux dispositifs artisanaux avaient été décrits sans apporter la
+                                fiabilité et l’efficacité qui puisse mener à une solution industrielle.
+                            </p>
+                            <p>
+                                Le tout premier prototype de notre projet a été fabriqué en juin 1988 à Lyon en France,
+                                durant ses vacances. Ce prototype était manuel et son rendement non prometteur était
+                                inférieur à 30%. Néanmoins, il a permis la même année par une modification de valider le
+                                concept de base et de porter autour de 50% l’efficacité. Toujours peu satisfaisant mais
+                                sur la bonne voie, c’est ainsi que le projet de brevet d’invention est approuvé et
+                                déposé en 1989 auprès du cabinet Maisonnier à Lyon. Par la suite, l’auteur est affecté
+                                en Algérie toujours comme ingénieur d’opérations travaillant en rotation 7 semaines sur
+                                3 de repos en France.
+                            </p>
+                            <p>
+                                Dès lors, il profitait de ses périodes fréquentes de repos en 1989 pour poursuivre ses
+                                travaux et ses efforts menèrent aux conclusions suivantes :
+                            </p>
+                            <ul>
+                                <li>Nécessité d’une étude préalable des propriétés physiques des graines ;</li>
+                                <li>Nécessité d’une étude statistique des populations de graine ;</li>
+                            </ul>
+                            <p>
+                                Ces deux études s’avèrent être au cœur du projet qui devient ainsi non plus seulement un
+                                projet d’invention technique mais un projet de recherche scientifique préalable.<br>
+                                Il a fallu attendre la fin de 1994 et début 1995 qui marque la période sabbatique de
+                                l’auteur pour que le projet s’accélère et mène à un changement majeur notamment :
+                            </p>
+                            <ol>
+                                <li>La machine de décorticage devra être mécanisée et non manuelle.</li>
+                                <li>Il s’agira d’une chaîne de machines et non d’une seule, d’où l’approche
+                                    industrielle.</li>
+                            </ol>
+                            <p>
+                                De nombreux dispositifs techniques d’expérimentations, plus de 40, sont ainsi construits
+                                en marge du projet initial afin de valider les nouveaux concepts des différents modules
+                                du système. Désormais, l’efficacité du décorticage franchit la barre de 60% en 1995. Le
+                                premier prototype expérimental de la chaîne est en place. À ce moment, le prototype
+                                effectue le travail de 35 personnes et les concepts de base sont validés.
+                            </p>
+                            <p>
+                                Il s’avère alors clair qu’un travail de recherche plus poussé est nécessaire afin
+                                d’optimiser et fiabiliser les solutions techniques. Fin 2012, Samuel Safo Tchofo
+                                anticipe et prend sa retraite ; il relance un an plus tard à plein temps la recherche
+                                qui aboutira à la formulation d’une série d’équations dont certaines sont présentes tant
+                                en statistiques, algèbre, équations différentielles…etc. Elles mèneront en 2015 à
+                                franchir les hautes barres symboliques de 90% d’efficacité au décorticage et la barre de
+                                95% et au dépôt d’un brevet auprès de l’OAPI. Dans la même lancée, les prototypes
+                                industriels sont finalisés en trois unités : Prétraitement, Décorticage, Triage qui sont
+                                capables d’effectuer le travail de 80 personnes avec chacun une précision supérieure à
+                                90%.
+                            </p>
+                            <p>
+                                En d’autres termes, ce qu’un homme fait en 80 jours, ce prototype le fait en 1 jour. 28
+                                années se sont écoulées entre le premier dessin et la solution actuelle. Le projet a été
+                                financé sur fonds propres, notamment la fabrication des pièces, l’achat de l’outillage
+                                et des équipements de mesures et la rémunération des assistants.
+                            </p>
+                            <p>
+                                Les dates ci-dessous résument les périodes historiques partant du début du projet
+                                jusqu’à la création de SEM production :
+                            </p>
+                            <ul>
+                                <li><strong>Janvier à Février 1988 :</strong> Cette période marque le début du projet,
+                                    alors qu’il est ingénieur général des opérations pétrolières au Gabon, il consacre
+                                    40% de son temps au dessin de conception.</li>
+                                <li><strong>Février à Mai 1988 :</strong> Toujours ingénieur basé au Gabon, il consacre
+                                    20% de son temps au suivi des dessinateurs.</li>
+                                <li><strong>Mai à Septembre 1988 :</strong> Arrivé en France et officiant en tant
+                                    qu’ingénieur, le concepteur consacre 75% de son temps à son projet. Cette période
+                                    est caractérisée par la fabrication du tout premier prototype.</li>
+                                <li><strong>Novembre 89 à Novembre 94 :</strong> C’est la période pendant laquelle il
+                                    fait des études, des modifications et aussi le 1er essai qui donne déjà lieu à des
+                                    résultats. Également, il est dans le management et des projets, ceci constitue son
+                                    activité professionnelle, il consacre 20% de son temps à son projet personnel.</li>
+                                <li><strong>Novembre 94 à Novembre 95 :</strong> Cette période se caractérise par un
+                                    repos (année sabbatique) durant lequel il consacre 60% de son temps tant dans la
+                                    recherche et aussi dans le développement ceci dans le but d’augmenter d’améliorer le
+                                    rendement du prototype et obtenir de meilleurs résultats.</li>
+                                <li><strong>Novembre 95 à Octobre 2012 :</strong> Durant toute cette longue période, son
+                                    activité professionnelle prend le dessus alors qu’il est successivement dans le
+                                    management et projets puis Directeur et enfin Directeur Général. Du fait de sa forte
+                                    mobilité, il passe 15% de son temps à travailler sur ce propre projet qui donne
+                                    uniquement lieu à des « essais ».</li>
+                                <li><strong>Décembre 2012 à Novembre 2013 :</strong> Marquée par la délocalisation de la
+                                    France pour le Cameroun avec toute la logistique, cette période est caractérisée par
+                                    une accélération des travaux sur tous les aspects. Il est consultant et travaille
+                                    sur SEM.</li>
+                                <li><strong>Novembre 2013 à Décembre 2015 :</strong> La recherche, le développement sont
+                                    intenses sur SEM. Ayant pour base de manière définitive le Cameroun, nous assistons
+                                    dans un premier temps à l’installation de l’atelier ainsi que du laboratoire,
+                                    ensuite à une recherche ultime plus poussée entre la France et le Cameroun pour se
+                                    solder à la fin par la mise sur pieds du prototype final.</li>
+                                <li><strong>2017 :</strong> C’est la création de SEM production…</li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <div class="content-image">
+                    <img src="assets/images/Gallerie/usine1.jpg" alt="Installations SEM Production">
+                </div>
+                <!-- Section 3: Notre Chaîne de Valeur -->
+                <section id="chaine-valeur" class="about-section">
+                    <div class="section-header">
+                        <!--<h2>Une Qualité Maîtrisée à Chaque Étape</h2>-->
+                        <h2 data-i18n="nav.about.value_chain">Notre Chaîne de Valeur</h2>
+                        <p data-i18n="about.s3.subtitle">Découvrez notre processus de production rigoureux qui garantit
+                            l'excellence de nos produits
+                        </p>
+                    </div>
+
+                    <div class="content-text" data-i18n="about.s3.content">
+                        <p>Notre chaîne de valeur est conçue pour garantir la qualité, la traçabilité et la durabilité
+                            de nos produits. Chaque étape est soigneusement contrôlée pour vous offrir le meilleur des
+                            produits naturels.</p>
+                    </div>
+                    <div class="content-image">
+                        <img src="assets/images/chainevaleur1.jpg" alt="">
+                        <img src="assets/images/chainevaleur2.jpg" alt="">
+                    </div>
+
+                    <!--<div class="value-chain">
+                    <div class="value-chain-grid">
+                        <div class="value-step">
+                            <div class="step-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4>Sélection des Graines</h4>
+                            <p>Nous sélectionnons rigoureusement les meilleures graines auprès de producteurs locaux engagés dans une agriculture durable.</p>
+                        </div>
+                        
+                        <div class="value-step">
+                            <div class="step-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h4>Nettoyage & Tri</h4>
+                            <p>Les graines sont soigneusement nettoyées et triées pour éliminer toute impureté et garantir une qualité optimale.</p>
+                        </div>
+                        
+                        <div class="value-step">
+                            <div class="step-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>Transformation</h4>
+                            <p>Nous utilisons des technologies de pointe pour transformer les graines tout en préservant leurs qualités nutritionnelles.</p>
+                        </div>
+                        
+                        <div class="value-step">
+                            <div class="step-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h4>Contrôle Qualité</h4>
+                            <p>Chaque lot de produit est soumis à des tests rigoureux pour garantir sa conformité avec nos standards de qualité élevés.</p>
+                        </div>
+                        
+                        <div class="value-step">
+                            <div class="step-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <h4>Conditionnement</h4>
+                            <p>Nos produits sont conditionnés dans des emballages écologiques qui préservent leur fraîcheur et leurs propriétés.</p>
+                        </div>
+                        
+                        <div class="value-step">
+                            <div class="step-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <h4>Distribution</h4>
+                            <p>Nous assurons une distribution rapide et efficace pour que nos produits arrivent frais chez vous, où que vous soyez.</p>
+                        </div>
+                    </div>
+                </div>-->
+                </section>
+                <div class="content-image">
+                    <img src="assets/images/Gallerie/image promoteur(2).jpg" alt="Installations SEM Production">
+                </div>
+                <!-- Section 4: Le Promoteur -->
+                <section id="promoteur" class="about-section">
+                    <div class="section-header">
+                        <h2 data-i18n="nav.about.promoter">Le Promoteur</h2>
+                        <!--<p>Découvrez la vision et la passion qui animent SEM Production</p>-->
+                    </div>
+
+                    <div class="founder-section">
+                        <div class="founder-image">
+                            <img src="assets/images/safo.jpg" alt="Jimmy Alexander - Fondateur de SEM Production">
+                        </div>
+                        <div class="content-text" data-i18n="about.s4.content">
+                            <!--<h3>SAFO TCHOFO</h3>
+                        <p class="founder-quote">"Depuis mon enfance, j'ai toujours été fasciné par la richesse des ressources naturelles de notre pays et leur potentiel inexploité. C'est cette fascination qui m'a poussé à créer SEM Production en 2005."</p>-->
+
+                            <p>
+                                Samuel a 28 ans d'expérience dans les secteurs du Pétrole, Gaz et de l'Énergie, dont 15
+                                ans en Afrique et 13 à l'étranger jusqu’en 2012.<br>
+                                Il prend sa retraite anticipée pour ensuite être consultant en énergie et surtout
+                                finaliser un ancien projet qui lui tenait à cœur&nbsp;: celui de la recherche sur le
+                                décorticage des graines de courges, tâche pénible et complexe jusqu’alors manuelle dans
+                                son pays d’origine.<br>
+                                Ce projet aboutit en 2017 à la première usine de décorticage de graines de courge à
+                                coque dure.
+                            </p>
+                            <p>
+                                Il est diplômé de l'École Nationale Supérieure Polytechnique de Yaoundé en 1982 avec un
+                                Master en Ingénierie Electromécanique.<br>
+                                Il détient divers diplômes et certificats en pétrole et gaz, en gestion d'entreprise, en
+                                négociations de contrats pétroliers, en ingénierie pétrolière, en ressources humaines,
+                                gestion des projets, etc.
+                            </p>
+                            <p>
+                                Il est par ailleurs un orateur distingué dans diverses conférences sur l’Énergie et
+                                consultant en développement de contenu local dans le secteur du pétrole, gaz et mines
+                                notamment auprès des organismes des Nations Unies.
+                            </p>
+                            <p>
+                                Samuel SAFO TCHOFO a commencé sa carrière internationale dans le secteur du pétrole, du
+                                gaz et de l'énergie en 1984 à Schlumberger, occupant les postes suivants du dernier au
+                                premier&nbsp;:
+                            </p>
+                            <ul>
+                                <li>• 3 ans en tant que Directeur Général du Cameroun et de la Guinée Équatoriale basé à
+                                    Malabo</li>
+                                <li>• 3 ans en tant que Directeur RH du groupe informatique basé à Houston</li>
+                                <li>• 2 ans Consultant basé à Luanda</li>
+                                <li>• 5 ans en tant que Directeur du développement des affaires pour les compagnies
+                                    pétrolières nationales africaines, et gestionnaire du contenu local basé à Luanda
+                                </li>
+                                <li>• 3 ans en tant que Directeur des ventes de produits de compteurs d'énergie -
+                                    Afrique, basé à Paris</li>
+                                <li>• 3 ans en tant que chef de projet dans le centre de recherche et développement du
+                                    groupe Schlumberger à Paris</li>
+                                <li>• 2 ans en tant que responsable du recrutement pour l'Afrique basé en France</li>
+                                <li>• 2 ans en tant qu'enseignant en technologie d'exploitation pétrolière, basé à Parme
+                                    - Italie</li>
+                                <li>• 1 an en tant que chef de base, Tanzanie-Kenya basé à Mombasa - Kenya puis à Dar es
+                                    Salaam - Tanzanie</li>
+                                <li>• 5 ans en tant qu'ingénieur des opérations pétrolières au Congo, au Gabon, en
+                                    Angola, en Libye, en Algérie</li>
+                            </ul>
+                            <p></p>
+                            <p></p>
+                            <!--<p class="founder-signature">SAFO TCHOFO<br>Fondateur & CEO de SEM Production</p>-->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </section>
+    <!-- Panier -->
+    <script src="js/script.js"></script>
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout" id="checkout-whatsapp">
+            Commander via WhatsApp
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform">&times;</span>
+            <h2>Vous serez mis en relation avec notre service Commercial</h2>
+            <span>Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                <div class="section-choice">
+                    <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Continuer
+                    </div>
+                    <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->
+                </div>
+                <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail">&times;</span>
+            <h2>Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone">
+                <label for="command-guests">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i>
+                    Commander
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+</body>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies innovantes
+                    tout en préservant les traditions.</p>
+                <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                    <i class="fab fa-whatsapp"> </i> Nous laisser un message
+                </a>
+            </div>
+            <div class="footer-column">
+                <h3>Navigation Rapide</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                    <li><a href="index.html#products-section">Nos Produits</a></li>
+                    <li><a href="evenements.html">Nos Événements</a></li>
+                    <li><a href="technologie.html">Notre Technologie</a></li>
+                    <li><a href="videos.html">Nos Vidéos</a></li>
+                    <li><a href="photos.html">Nos Photos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                    <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                    <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                    <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                </ul>
+                <div class="container-social-icons">
+                    <div class="container-icon">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                    </div>
+                    <div class="container-icon">
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                    </div>
+
+                    <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                    <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                    <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a
+                    href="#">Politique de confidentialité</a></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Navigation entre les sections
+    document.addEventListener('DOMContentLoaded', function () {
+        const navLinks = document.querySelectorAll('.page-nav-link');
+        const sections = document.querySelectorAll('.about-section');
+
+        // Fonction pour mettre à jour la navigation active
+        function updateActiveNav() {
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.clientHeight;
+
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Écouter le défilement
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Navigation par clic
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                // Retirer la classe active de tous les liens
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                // Ajouter la classe active au lien cliqué
+                this.classList.add('active');
+
+                // Faire défiler jusqu'à la section cible
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialiser la navigation active
+        updateActiveNav();
+    });
+</script>
+
+
+
+</html>

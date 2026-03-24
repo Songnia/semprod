@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du produit</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+
+    <!-- Scripts i18n -->
+    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n.js"></script>
+</head>
+<style>
+    .this-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .container-back-link {
+        margin: 50px 0;
+        font-size: 1.5em;
+    }
+
+    .back-link:hover {
+        color: var(--primary-color);
+    }
+
+    .product-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .product-image {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    .product-info {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-brand {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .product-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    .product-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .no-reviews {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+
+    .product-price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin: 20px 0;
+    }
+
+    .price-per-liter {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .location-checker {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+    }
+
+    .location-checker h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .location-input {
+        display: flex;
+        gap: 10px;
+    }
+
+    .location-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+
+    .location-input button {
+        padding: 10px 15px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 15px;
+        margin: 30px 0;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        flex: 1;
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .tabs {
+        margin-top: 40px;
+    }
+
+    .tabs-header {
+        display: flex;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .tab {
+        padding: 15px 25px;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    .tab.active {
+        border-bottom: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+    .tab-content {
+        padding: 25px;
+        background-color: white;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-panel {
+        display: none;
+    }
+
+    .tab-panel.active {
+        display: block;
+    }
+
+    .description-content {
+        line-height: 1.8;
+    }
+
+    .description-content h2 {
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+
+    .description-content p {
+        margin-bottom: 15px;
+    }
+
+    .benefits-list {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+
+    .benefits-list li {
+        margin-bottom: 10px;
+    }
+
+    .key-actives {
+        margin: 20px 0;
+    }
+
+    .key-actives h3 {
+        margin-bottom: 10px;
+    }
+
+    .skin-type {
+        margin: 20px 0;
+        font-style: italic;
+    }
+
+    .composition-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    .composition-table th,
+    .composition-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .composition-table th {
+        background-color: #f5f5f5;
+    }
+
+    .usage-list {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+
+    .usage-list li {
+        margin-bottom: 10px;
+    }
+
+    .storage-info {
+        margin: 20px 0;
+    }
+
+    .reviews-section {
+        text-align: center;
+    }
+
+    .no-reviews-message {
+        margin: 20px 0;
+        color: #666;
+    }
+
+    .write-review-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .related-products {
+        margin-top: 50px;
+    }
+
+    .related-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .product-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-card-content {
+        padding: 15px;
+    }
+
+    .product-card-title {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .product-card-price {
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+        .product-header {
+            grid-template-columns: 1fr;
+        }
+
+        .product-actions {
+            flex-direction: column;
+        }
+
+        .tabs-header {
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 15px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .product-actions .btn {
+            font-size: 1em;
+            padding: 12px;
+        }
+    }
+</style>
+
+<body>
+    <!-- Header -->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li class="dropdown" classe="product-dropdown">
+                        <a href="qui-sommes-nous.html"><span data-i18n="nav.about">Qui Sommes-Nous ?</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise" data-i18n="nav.about.company">Notre
+                                    Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire" data-i18n="nav.about.history">Notre Histoire</a>
+                            </li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur" data-i18n="nav.about.value_chain">Notre
+                                    Chaine de Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur" data-i18n="nav.about.promoter">Le Promoteur</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" classe="product-dropdown">
+                        <a href="index.html#products-section"><span data-i18n="nav.products">Produits</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <script src="js/product-data.js"></script>
+                        <script>
+                            // Fonction pour afficher les détails du produit
+                            function displayProductMenu() {
+                                const product = productsData;
+                                const lang = localStorage.getItem('siteLang') || 'fr';
+                                const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                if (product) {
+                                    container_dropdown_menu.innerHTML = product.map(product => `
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names[lang] || product.names.fr}</a></li>
+                                        `).join('');
+                                    return;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', displayProductMenu);
+                            window.addEventListener('languageChanged', displayProductMenu);
+                        </script>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Evenements</a></li>
+                    <li class="dropdown" classe="product-dropdown">
+                        <a href="technologie.html"><span data-i18n="nav.tech">Notre Technologie</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche" data-i18n="nav.tech.research">La recherche</a>
+                            </li>
+                            <li><a href="technologie.html#la-Conception-Fabrication"
+                                    data-i18n="nav.tech.design">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation"
+                                    data-i18n="nav.tech.machine">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" classe="product-dropdown">
+                        <a href="espritngon.html"><span data-i18n="nav.spirit">Esprit Ngon</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits"
+                                    data-i18n="nav.spirit.history">Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette" data-i18n="nav.spirit.recipe">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries" data-i18n="nav.spirit.pastries">Patisseries</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Nous contacter</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="lang-switch dropdown">
+                    <a href="#" class="current-lang-display">
+                        <span id="current-lang-icon">🇫🇷</span> 
+                        <span id="current-lang-text">FR</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                    </ul>
+                </div>
+                
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container this-container">
+        <div class="container-back-link">
+            <a href="index.html#products-section" class="back-link" data-i18n="detail.back">← Retour aux produits</a>
+        </div>
+
+        <div id="product-detail-container">
+            <!-- Le contenu du produit sera chargé dynamiquement ici -->
+            <div class="loading" data-i18n="detail.loading">Chargement du produit...</div>
+        </div>
+    </div>
+    <div class="container" id="product-detail-container">
+        <script src="js/product-data.js"></script>
+        <script>
+            // Fonction pour récupérer le paramètre ID de l'URL
+            function getProductIdFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return parseInt(urlParams.get('id'));
+            }
+
+            // Fonction pour trouver un produit par son ID
+            function findProductById(id) {
+                return productsData.find(product => product.id === id);
+            }
+
+            // Fonction pour afficher les détails du produit
+            function displayProductDetails() {
+                const productId = getProductIdFromURL();
+                const product = findProductById(productId);
+                const container = document.getElementById('product-detail-container');
+                const lang = localStorage.getItem('siteLang') || 'fr';
+                const t = typeof translations !== 'undefined' ? translations[lang] || translations['fr'] : {};
+
+                if (!product) {
+                    container.innerHTML = `
+                    <div class="error-message">
+                        <h2 data-i18n="detail.error.title">${t['detail.error.title'] || "Produit non trouvé"}</h2>
+                        <p data-i18n="detail.error.desc">${t['detail.error.desc'] || "Le produit que vous recherchez n'existe pas ou a été supprimé."}</p>
+                        <a href="index.html" class="btn" data-i18n="detail.error.btn">${t['detail.error.btn'] || "Retour à la liste des produits"}</a>
+                    </div>
+                `;
+                    return;
+                }
+
+                // Générer le HTML pour le produit
+                container.innerHTML = `
+
+        <div class="product-header">
+                <div class="product-image">
+                        <img id="product-image" src=" ${product.images[0]} " alt="${product.names[lang] || product.names.fr}">
+                    </div>
+                    
+                    <div class="product-info">
+                        <h1 id="product-title" class="product-title">${product.names[lang] || product.names.fr} ${product.formats[0].volume}</h1>
+                        <p class="product-subtitle" id="product-subtitle">${product.brand[lang] || product.brand.fr}</p>
+                        
+                        <!--<p class="no-reviews">Soyez le premier à commenter ce produit</p>-->
+                        
+                        ${product.category && product.category.includes("speciale") ? '' : `
+                        <div class="product-price" id="product-price">${product.formats[0].price} FCFA</div>
+                        `}
+                        <!--<div class="price-per-liter">${product.formats[0].price} / litres</div>-->
+                        
+                        <!--<div class="location-checker">
+                            <h3>Renseignez votre code postal/ville pour accéder au stock en magasin ou à la livraison à domicile en Ile-de-France :</h3>
+                            <div class="location-input">
+                                <input type="text" placeholder="Code postal ou ville">
+                                <button>Vérifier</button>
+                            </div>
+                        </div>-->
+                        <div class="product-description">
+                            <p>${product.description[lang] || product.description.fr}</p>
+                        </div>
+                        ${product.category && product.category.includes("speciale") ?
+                        `
+                        <div class="product-actions">
+                            <button class="btn btn-secondary btn-checkout-platform" onclick="commandeDirectSpeciale('${product.names.fr.replace(/'/g, "\\'")}')">
+                                <i class="fab fa-whatsapp"></i> <span style="font-size: 0.5em;" data-i18n="detail.contact_us">${t['detail.contact_us'] || "Nous contacter"} </span>
+                            </button>                          
+                        </div>`
+                        :
+                        `
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-cart add-to-cart" data-product="${product.names.fr}" data-price="${product.formats[0].price}">
+                                <i class="fas fa-shopping-cart"></i> <span data-i18n="detail.add_cart">${t['detail.add_cart'] || "Ajouter au panier"}</span>
+                            </button>                            
+                        </div>`}
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <h2 data-i18n="detail.tabs.title">${t['detail.tabs.title'] || "RUBRIQUES"}</h2>
+                    <div class="tabs-header">
+                        <div class="tab active" data-tab="description" data-i18n="detail.tabs.desc">${t['detail.tabs.desc'] || "Description détaillée"}</div>
+                        <div class="tab" data-tab="ingredients" data-i18n="detail.tabs.ingredients">${t['detail.tabs.ingredients'] || "Ingrédients"}</div>
+                        <div class="tab" data-tab="composition" data-i18n="detail.tabs.nutrition">${t['detail.tabs.nutrition'] || "Valeur Nutritonnelle"}</div>
+                        <div class="tab" data-tab="vertues" data-i18n="detail.tabs.benefits">${t['detail.tabs.benefits'] || "Bienfaits"}</div>
+                        <div class="tab" data-tab="usage" data-i18n="detail.tabs.usage">${t['detail.tabs.usage'] || "Utilisation"}</div>
+                        <!--<div class="tab" data-tab="storage">Conservation</div>
+                        <div class="tab" data-tab="reviews">Avis (0)</div>-->
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-panel active" id="description-panel">
+                            <div class="description-content">
+                                <h2>${product.names[lang] || product.names.fr} ${product.formats[0].volume}</h2>
+                                <p>${product.description[lang] || product.description.fr}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-panel" id="ingredients-panel">
+                            <ul>${(product.ingredient[lang] && product.ingredient[lang].length > 0 ? product.ingredient[lang] : product.ingredient.fr).map(item => `<li>${item}</li>`).join('')}</ul>
+                        </div>  
+
+                        <div class="tab-panel" id="composition-panel">
+                            <!--<h3>Composition</h3>-->
+                            <table class="composition-table">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="detail.comp.th1">${t['detail.comp.th1'] || "Composition"}</th>
+                                        <th data-i18n="detail.comp.th2">${t['detail.comp.th2'] || "valeur pour 100g"}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        ${Object.entries(product.composition[lang] || product.composition.fr).map(([key, value]) => `
+                                            <tr>
+                                                <td>${key}</td>
+                                                <td>${value}</td>
+                                            </tr>
+                                        `).join('')}
+                                </tbody>
+                                
+                            </table>
+                            ${product.category && product.category.includes("huile-sante") ? `
+                            <p style="font-style: italic;" data-i18n="detail.comp.iterg">${t['detail.comp.iterg'] || "Analysé par les laboratoires ITERG, Pessac -France"}</p>` :
+                        `<p style="font-style: italic;" data-i18n="detail.comp.capinov">${t['detail.comp.capinov'] || "Analysé par les laboratoires Capinov-Brest France"}</p>`}           
+                        </div>
+
+                        <div class="tab-panel" id="vertues-panel">
+                            <ul>${(product.vertues[lang] && product.vertues[lang].length > 0 ? product.vertues[lang] : product.vertues.fr || []).map(item => `<li>${item}</li>`).join('')}</ul>
+                        </div>                        
+                        
+                        <div class="tab-panel" id="usage-panel">
+                            <ul>${(product.usage[lang] && product.usage[lang].length > 0 ? product.usage[lang] : product.usage.fr || []).map(item => `<li>${item}</li>`).join('')}</ul>
+                        </div>
+                        
+                        <!--<div class="tab-panel" id="storage-panel">
+                            <h3>Conservation</h3>
+                            <div class="storage-info">
+                                <p>Conserver à température ambiante, à l'abri de la lumière directe et de la chaleur.</p>
+                                <p>Une fois ouvert, utiliser dans les 12 mois.</p>
+                                <p>Ne pas exposer à des températures extrêmes.</p>
+                            </div>
+                        </div>-->
+                        
+                        <div class="tab-panel" id="reviews-panel">
+                            <div class="reviews-section">
+                                <h3 data-i18n="detail.reviews.title">${t['detail.reviews.title'] || "Avis clients"}</h3>
+                                <div class="no-reviews-message">
+                                    ${product.testimonials && product.testimonials.length > 0 ? `
+                                        ${product.testimonials.map(testimonial => `
+                                            <div class="testimonial">
+                                                <h4>${testimonial.author} <span class="date">${testimonial.date}</span></h4>
+                                                <p>${testimonial.comment}</p>
+                                            </div>
+                                        `).join('')}
+                                    ` : `<p data-i18n="detail.reviews.none">${t['detail.reviews.none'] || 'Aucun témoignage pour le moment.'}</p>`}
+                                </div>
+                                <button class="write-review-btn" data-i18n="detail.reviews.btn">${t['detail.reviews.btn'] || "Donner mon avis"}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    `;
+
+                // Ajouter les événements après le chargement du HTML
+                addEventListeners(product);
+            }
+
+            // Fonction pour ajouter les événements
+            function addEventListeners(product) {
+                // Gestion des onglets
+                const tabs = document.querySelectorAll('.tab');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function () {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+
+                        const tabId = this.getAttribute('data-tab');
+                        const tabPanels = document.querySelectorAll('.tab-panel');
+                        tabPanels.forEach(panel => panel.classList.remove('active'));
+                        document.getElementById(`${tabId}-panel`).classList.add('active');
+                    });
+                });
+
+                // Gestion des formats
+                /*const formatOptions = document.querySelectorAll('.format-option');
+                if (formatOptions.length > 0) {
+                    formatOptions[0].classList.add('active');
+                    
+                    formatOptions.forEach(option => {
+                        option.addEventListener('click', function() {
+                            formatOptions.forEach(opt => opt.classList.remove('active'));
+                            this.classList.add('active');
+                            
+                            const price = this.getAttribute('data-price');
+                            document.querySelector('.product-price').textContent = price;
+                        });
+                    });
+                }*/
+
+                // Gestion du panier
+                document.getElementById('add-to-cart').addEventListener('click', function () {
+                    const activeFormat = document.querySelector('.format-option.active');
+                    const selectedFormat = activeFormat ?
+                        product.formats.find(f =>
+                            f.weight === activeFormat.textContent.trim() ||
+                            f.volume === activeFormat.textContent.trim()
+                        ) : product.formats[0];
+
+                    alert(`Ajout au panier : ${product.names.fr} - ${selectedFormat.weight || selectedFormat.volume} - ${selectedFormat.price}`);
+                    // Ici, vous ajouteriez le produit au panier
+                });
+            }
+
+            // Charger les détails du produit au chargement de la page
+            document.addEventListener('DOMContentLoaded', displayProductDetails);
+            window.addEventListener('languageChanged', displayProductDetails);
+        </script>
+        <div class="related-products">
+            <!--<h2 class="related-title">Vous aimerez aussi</h2>-->
+            <div class="products-grid" id="related-products">
+                <!-- Les produits apparentés seront générés dynamiquement -->
+            </div>
+        </div>
+    </div>
+    <!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout btn-checkout-platform" id="checkout-whatsapp">
+            Commander maintenant
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform">&times;</span>
+            <h2>Vous serez mis en relation avec notre service Commercial</h2>
+            <span>Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                <div class="section-choice">
+                    <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Continuer
+                    </div>
+                    <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->
+                </div>
+                <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail">&times;</span>
+            <h2>Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone">
+                <label for="command-guests">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i>
+                    Commander
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                    <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies
+                        innovantes tout en préservant les traditions.</p>
+                    <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                        <i class="fab fa-whatsapp"> </i> Nous laisser un message
+                    </a>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation Rapide</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                        <li><a href="index.html#products-section">Nos Produits</a></li>
+                        <li><a href="evenements.html">Nos Événements</a></li>
+                        <li><a href="technologie.html">Notre Technologie</a></li>
+                        <li><a href="videos.html">Nos Vidéos</a></li>
+                        <li><a href="photos.html">Nos Photos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Coordonnées</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                        <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                        <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                        <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                    </ul>
+                    <div class="container-social-icons">
+                        <div class="container-icon">
+                            <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                        </div>
+                        <div class="container-icon">
+                            <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                        </div>
+
+                        <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                        <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                        <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a
+                        href="#">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

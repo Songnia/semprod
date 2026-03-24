@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+    <title>Nos Videos</title>
+    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n.js"></script>
+</head>
+<style>
+    /* Gallery Header */
+    .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+        font-family: var(--font-heading);
+        color: var(--primary-color);
+    }
+
+    .gallery-section {
+        background-color: var(--light-color);
+    }
+
+    .gallery-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .gallery-title {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        font-weight: 300;
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+    }
+
+    .gallery-subtitle {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-bottom: 80px;
+    }
+
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .gallery-img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-img {
+        transform: scale(1.05);
+    }
+
+
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-title {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .nav-main {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-links {
+            gap: 20px;
+        }
+
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .gallery-title {
+            font-size: 2rem;
+        }
+
+        .footer-links {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+</style>
+
+<body>
+    <!--header-->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+                            
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="qui-sommes-nous.html" data-i18n="nav.about">Qui Sommes-Nous ? <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise" data-i18n="nav.about_company">Notre
+                                    Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire" data-i18n="nav.about_history">Notre Histoire</a>
+                            </li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur" data-i18n="nav.about_value">Notre Chaine de
+                                    Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur" data-i18n="nav.about_promoter">Le Promoteur</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#products-section" data-i18n="nav.products">Produits <i
+                                class="fas fa-chevron-down"></i></a>
+                        <script src="js/product-data.js"></script>
+                        <script>
+                            // Fonction pour afficher les détails du produit
+                            function displayProductMenu() {
+                                const product = productsData;
+                                const currentLang = localStorage.getItem('siteLang') || 'fr';
+                                console.log(product)
+                                const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                if (product) {
+                                    container_dropdown_menu.innerHTML = product.map(product => `
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names[currentLang]}</a></li>
+                                        `).join('');
+                                    return;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', displayProductMenu);
+                            window.addEventListener('languageChanged', displayProductMenu);
+                        </script>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Evenements</a></li>
+                    <li class="dropdown">
+                        <a href="technologie.html" data-i18n="nav.technology">Notre Technologie <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche" data-i18n="nav.tech_research">La recherche</a>
+                            </li>
+                            <li><a href="technologie.html#la-Conception-Fabrication"
+                                    data-i18n="nav.tech_design">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation"
+                                    data-i18n="nav.tech_machine">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="espritngon.html" data-i18n="nav.esprit">Esprit Ngon <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits" data-i18n="nav.esprit_history">
+                                    Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette" data-i18n="nav.esprit_recipe">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries" data-i18n="nav.esprit_pastry">Patisseries</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Nous contacter</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="lang-switch dropdown">
+                    <a href="#" class="current-lang-display">
+                        <span id="current-lang-icon">🇫🇷</span> 
+                        <span id="current-lang-text">FR</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                    </ul>
+                </div>
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+
+            <!-- Gallery Header -->
+            <div class="section-title">
+                <h2 data-i18n="videos.title">Notre Galerie Video</h2>
+                <p data-i18n="videos.subtitle">Découvrez nos produits, installations et événements en images</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+
+                <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/videos-2025/mr-safo-presentation-adda.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc1">
+                        Témoignage d’un ancien de la diaspora :
+                        🇨🇲 Samuel SAFO TCHOFO, inventeur et entrepreneur camerounais, est à l’origine d’une innovation
+                        technologique remarquable.
+                    </p>
+                </div> <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/videos-2025/2.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc2">
+                        𝗡𝗴𝗼𝗻 𝗯𝘆 𝗦𝗘𝗠 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗮𝘂𝘅 𝗰𝗼̂𝘁𝗲𝘀 𝗱𝗲 𝗹𝗮 𝗷𝗲𝘂𝗻𝗲𝘀𝘀𝗲 𝗽𝗼𝘂𝗿
+                        𝗹’𝗶𝗻𝗻𝗼𝘃𝗮𝘁𝗶𝗼𝗻 𝗲𝘁 𝗹’𝗲𝗻𝘁𝗿𝗲𝗽𝗿𝗲𝗻𝗲𝘂𝗿𝗶𝗮𝘁
+                    </p>
+                </div> <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/videos-2025/4.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc3">
+                        𝐂𝐡𝐞𝐳 𝐍𝐠𝐨𝐧 𝐛𝐲 𝐒𝐄𝐌 𝐏𝐫𝐨𝐝𝐮𝐜𝐭𝐢𝐨𝐧, 𝐜𝐡𝐚𝐪𝐮𝐞 𝐠𝐞𝐬𝐭𝐞 𝐜𝐨𝐦𝐩𝐭𝐞 !
+                        Offrez du bonheur, partagez de la joie ! Nos paniers cadeaux sont soigneusement préparés pour
+                        illuminer vos moments spéciaux et ravir vos proches.
+                    </p>
+                </div> <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/videos-2025/1.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc4">
+                        L’Entreprise Ngon by SEM Production lors de son exposition en Égypte dans la ville du Caire .
+                        Retrouvez ces produits locaux 100% Made In Cameroun 🇨🇲 dans nos rayons epicerie de
+                    </p>
+                </div> <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/videos-2025/3.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p></p>
+                </div> <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/videos-2025/5.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc5">
+                        Parce que 𝘃𝗼𝘁𝗿𝗲 𝗯𝗶𝗲𝗻-𝗲̂𝘁𝗿𝗲 𝗲𝘀𝘁 𝗮𝘂 𝗰œ𝘂𝗿 𝗱𝗲 𝘁𝗼𝘂𝘁 𝗰𝗲 𝗾𝘂𝗲 𝗻𝗼𝘂𝘀
+                        𝗰𝗿𝗲𝗼𝗻𝘀 !
+                        Nos clients en parlent mieux que nous
+                    </p>
+                </div>
+
+                <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/videos-2025/6.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p></p>
+                </div>
+
+                <!-- Video 1 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/SemJambo~1.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p></p>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/FormatFactoryCRVT a la Fiac 2018 (1) (1).mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc6">SEM production à la FIAC (foire internationale des affaires et du
+                        commerce) en Mars 2018</p>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/uniteDecorticagedepistache.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc7">SEM production à l'émission Business Africa sur AfricaNews en Février
+                        2018</p>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/FormatFactoryunitedecorticagenew.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc8">Reportage qui présente l'usine de décorticage de SEM production, Février
+                        2018</p>
+                </div>
+
+                <!-- Video 5 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/FormatFactoryCRTV guest dec 2015new.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc9">SEM production au journal de 12H sur la CRTV, au mois de Décembre 2015
+                    </p>
+                </div>
+
+                <!-- Video 6 -->
+                <div class="gallery-item">
+                    <video class="gallery-img" controls>
+                        <source src="assets/videos/simac 7 news itreuse new (1).mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                    <p data-i18n="videos.desc10">SEM production au SIMAC (salon international du machinisme agricole du
+                        cameroun) sur 7News TV en
+                        Décembre 2015</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3 data-i18n="cart.title">Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            <span data-i18n="cart.total">Total:</span> <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout btn-checkout-platform" id="checkout-whatsapp" data-i18n="cart.checkout">
+            Commander maintenant
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform">&times;</span>
+            <h2 data-i18n="platform.modal_title">Vous serez mis en relation avec notre service Commercial</h2>
+            <span data-i18n="platform.modal_subtitle">Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                <div class="section-choice">
+                    <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="platform.whatsapp_btn">Continuer</span>
+                    </div>
+                    <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->
+                </div>
+                <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail">&times;</span>
+            <h2 data-i18n="form.modal_title">Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name" data-i18n="form.name_label">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone" data-i18n="form.phone_label">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone">
+                <label for="command-guests" data-i18n="form.order_label">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="form.submit_btn">Envoyer la Commande</span>
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+</body>
+<!--Footer-->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies innovantes
+                    tout en préservant les traditions.</p>
+                <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                    <i class="fab fa-whatsapp"> </i> Nous laisser un message
+                </a>
+            </div>
+            <div class="footer-column">
+                <h3>Navigation Rapide</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                    <li><a href="index.html#products-section">Nos Produits</a></li>
+                    <li><a href="evenements.html">Nos Événements</a></li>
+                    <li><a href="technologie.html">Notre Technologie</a></li>
+                    <li><a href="videos.html">Nos Vidéos</a></li>
+                    <li><a href="photos.html">Nos Photos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                    <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                    <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                    <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                </ul>
+                <div class="container-social-icons">
+                    <div class="container-icon">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                    </div>
+                    <div class="container-icon">
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                    </div>
+
+                    <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                    <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                    <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a
+                    href="#">Politique de confidentialité</a></p>
+        </div>
+    </div>
+</footer>
+<script src="js/script.js"></script>
+<script>
+    // Lightbox functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        // Ouvrir la lightbox
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const imgSrc = this.querySelector('img').src;
+                const imgAlt = this.querySelector('img').alt;
+
+                lightboxImg.src = imgSrc;
+                lightboxImg.alt = imgAlt;
+                lightbox.classList.add('active');
+
+                // Empêcher le défilement de la page
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Fermer la lightbox
+        lightboxClose.addEventListener('click', function () {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fermer la lightbox en cliquant à l'extérieur de l'image
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Fermer la lightbox avec la touche Échap
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+</script>
+
+</html>

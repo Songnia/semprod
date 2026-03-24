@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+
+    <title>Galerie Photo</title>
+    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n.js"></script>
+</head>
+<style>
+    /* Gallery section */
+    .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+        font-family: var(--font-heading);
+        color: var(--primary-color);
+    }
+
+    .gallery-section {
+        background-color: var(--light-color);
+    }
+
+    .gallery-filters {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .filter-btn {
+        padding: 10px 20px;
+        background-color: white;
+        border: 2px solid var(--primary-color);
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    /* Masonry Gallery */
+    .gallery {
+        column-count: 3;
+        column-gap: 20px;
+    }
+
+    .gallery-item {
+        break-inside: avoid;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        background-color: white;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-img {
+        transform: scale(1.05);
+    }
+
+    .gallery-caption {
+        padding: 15px;
+    }
+
+    .gallery-caption h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        color: var(--primary-color);
+    }
+
+    .gallery-caption p {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+    }
+
+    .lightbox.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+    }
+
+    .lightbox-img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 8px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .lightbox-close:hover {
+        color: var(--secondary-color);
+    }
+
+    .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 0 20px;
+        transition: var(--transition);
+    }
+
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+        color: var(--secondary-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .gallery {
+            column-count: 2;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .gallery {
+            column-count: 1;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+        }
+
+        .gallery-filters {
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .filter-btn {
+            padding: 10px 0;
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+            font-size: 0.5em;
+        }
+    }
+</style>
+
+<body>
+    <!--Header-->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+                            
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="qui-sommes-nous.html" data-i18n="nav.about">Qui Sommes-Nous ? <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise" data-i18n="nav.about_company">Notre
+                                    Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire" data-i18n="nav.about_history">Notre Histoire</a>
+                            </li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur" data-i18n="nav.about_value">Notre Chaine de
+                                    Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur" data-i18n="nav.about_promoter">Le Promoteur</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#products-section" data-i18n="nav.products">Produits <i
+                                class="fas fa-chevron-down"></i></a>
+                        <script src="js/product-data.js"></script>
+                        <script>
+                            // Fonction pour afficher les détails du produit
+                            function displayProductMenu() {
+                                const product = productsData;
+                                const currentLang = localStorage.getItem('siteLang') || 'fr';
+                                console.log(product)
+                                const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                if (product) {
+                                    container_dropdown_menu.innerHTML = product.map(product => `
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names[currentLang]}</a></li>
+                                        `).join('');
+                                    return;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', displayProductMenu);
+                            window.addEventListener('languageChanged', displayProductMenu);
+                        </script>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Evenements</a></li>
+                    <li class="dropdown">
+                        <a href="technologie.html" data-i18n="nav.technology">Notre Technologie <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche" data-i18n="nav.tech_research">La recherche</a>
+                            </li>
+                            <li><a href="technologie.html#la-Conception-Fabrication"
+                                    data-i18n="nav.tech_design">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation"
+                                    data-i18n="nav.tech_machine">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="espritngon.html" data-i18n="nav.esprit">Esprit Ngon <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits" data-i18n="nav.esprit_history">
+                                    Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette" data-i18n="nav.esprit_recipe">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries" data-i18n="nav.esprit_pastry">Patisseries</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Nous contacter</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="lang-switch dropdown">
+                    <a href="#" class="current-lang-display">
+                        <span id="current-lang-icon">🇫🇷</span> 
+                        <span id="current-lang-text">FR</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                    </ul>
+                </div>
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="photos.title">Notre Galerie Photos</h2>
+                <p data-i18n="photos.subtitle">Découvrez nos produits, installations et événements en images</p>
+            </div>
+
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all" data-i18n="photos.filter_all">Toutes les
+                    photos</button>
+                <button class="filter-btn" data-filter="produits" data-i18n="photos.filter_products">Nos
+                    Produits</button>
+                <button class="filter-btn" data-filter="installations" data-i18n="photos.filter_machines">Nos Machines
+                    made in Cameroun</button>
+                <button class="filter-btn" data-filter="evenement" data-i18n="photos.filter_events">Nos
+                    Evenements</button>
+                <button class="filter-btn" data-filter="equipe" data-i18n="photos.filter_team">Notre Équipe</button>
+            </div>
+
+            <div class="gallery">
+                <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/6.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/7.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/8.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/9.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/10.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/11.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/12.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/13.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/14.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/15.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_salon">Salon de l'agriculture Paris</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/1.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_sialy">SIALY</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/3.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/4.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/5.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/6.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/1.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/2.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/3.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/4.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/fr/5.jpg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- Photo 1 -->
+                <div class="gallery-item" data-category="produits">
+                    <img src="assets/images/Produits/huille-sante-ngon-250ml.jpg" alt="Graines de sésame bio"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_oil">Huile Précieuse de graines de Courge Tropicale “Ngon” 250ml</h3>
+                        <!--<p>Nos graines de sésame soigneusement sélectionnées et triées</p>-->
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="gallery-item" data-category="produits">
+                    <img src="assets/images/Produits/kara-ngon-250g.jpg" alt="Huile de sésame vierge"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_kara">Kara Ngon 250g</h3>
+                        <p data-i18n="photos.cap_kara_desc">Pistache Africaine
+                            Soufflée – Caramélisée</p>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/standsem.jpeg" alt="Installations de production"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="gallery-item" data-category="equipe">
+                    <img src="assets/images/Gallerie/semyaounde.jpeg" alt="Salon de l'agriculture" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_team">Notre Équipe</h3>
+                        <p data-i18n="photos.cap_team_desc">L'équipe passionnée qui fait vivre SEM Production au
+                            quotidien</p>
+                    </div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div class="gallery-item" data-category="equipe">
+                    <img src="assets/images/Gallerie/semattitude2.jpg" alt="Équipe SEM Production" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p data-i18n="photos.cap_team_desc">L'équipe passionnée qui fait vivre SEM Production au
+                            quotidien</p>
+                    </div>
+                </div>
+                <!-- Photo 5 -->
+                <div class="gallery-item" data-category="equipe">
+                    <img src="assets/images/Gallerie/semattitude1.jpeg" alt="Équipe SEM Production" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p data-i18n="photos.cap_team_desc">L'équipe passionnée qui fait vivre SEM Production au
+                            quotidien</p>
+                    </div>
+                </div>
+                <!-- Photo 6 -->
+                <div class="gallery-item" data-category="produits">
+                    <img src="assets/images/Produits/sable-ngon.png" alt="Biscuit Sablé Ngon" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 data-i18n="photos.cap_biscuit">Biscuit Sablé Ngon</h3>
+                        <p data-i18n="photos.cap_biscuit_desc">A la Farine de Pistache Africaine sans gluten, sucre
+                            réduit</p>
+                    </div>
+                </div>
+
+                <!-- Photo 7 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/josecedric.jpeg" alt="Laboratoire de contrôle qualité"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="produits">
+                    <img src="assets/images/Gallerie/jambo8.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/DSC_5254.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/diaspoevent.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/DSC_5273.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/DSC_5315.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="equipe">
+                    <img src="assets/images/Gallerie/usine1.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="produits">
+                    <img src="assets/images/Gallerie/jambo6.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/Samuel-Safo-Tchofo291215610.jpg" alt="Formation agriculteurs"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/machines/1.png" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/machines/2.png" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/machines/3.jpeg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/machines/4.jpeg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/machines/5.png" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/machines/6.png" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/machines/7.png" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="installations">
+                    <img src="assets/images/Gallerie/sem2.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/cedric.jpeg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/jambo13-640x310-4.jpg" alt="Formation agriculteurs"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="produits">
+                    <img src="assets/images/Gallerie/D" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/DSC_5329.jpg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/standsem.jpeg" alt="Formation agriculteurs" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/nov-2023-event/1.jpg" alt="Formation agriculteurs"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+                <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/nov-2023-event/2.jpg" alt="Formation agriculteurs"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/nov-2023-event/3.jpg" alt="Formation agriculteurs"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div> <!-- Photo 8 -->
+                <div class="gallery-item" data-category="evenement">
+                    <img src="assets/images/Gallerie/nouvelles-images/nov-2023-event/4.jpg" alt="Formation agriculteurs"
+                        class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img src="" alt="" class="lightbox-img">
+            <!--<div class="lightbox-nav">
+                <span class="lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+                <span class="lightbox-next"><i class="fas fa-chevron-right"></i></span>
+            </div>-->
+        </div>
+    </div>
+    <!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3 data-i18n="cart.title">Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            <span data-i18n="cart.total">Total:</span> <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout btn-checkout-platform" id="checkout-whatsapp" data-i18n="cart.checkout">
+            Commander maintenant
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform">&times;</span>
+            <h2 data-i18n="platform.modal_title">Vous serez mis en relation avec notre service Commercial</h2>
+            <span data-i18n="platform.modal_subtitle">Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                <div class="section-choice">
+                    <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="platform.whatsapp_btn">Continuer</span>
+                    </div>
+                    <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->
+                </div>
+                <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail">&times;</span>
+            <h2 data-i18n="form.modal_title">Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name" data-i18n="form.name_label">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone" data-i18n="form.phone_label">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone">
+                <label for="command-guests" data-i18n="form.order_label">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="form.submit_btn">Envoyer la Commande</span>
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+
+
+    <!--Footer-->
+
+</body>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies innovantes
+                    tout en préservant les traditions.</p>
+                <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                    <i class="fab fa-whatsapp"> </i> Nous laisser un message
+                </a>
+            </div>
+            <div class="footer-column">
+                <h3>Navigation Rapide</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                    <li><a href="index.html#products-section">Nos Produits</a></li>
+                    <li><a href="evenements.html">Nos Événements</a></li>
+                    <li><a href="technologie.html">Notre Technologie</a></li>
+                    <li><a href="videos.html">Nos Vidéos</a></li>
+                    <li><a href="photos.html">Nos Photos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                    <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                    <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                    <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                </ul>
+                <div class="container-social-icons">
+                    <div class="container-icon">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                    </div>
+                    <div class="container-icon">
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                    </div>
+
+                    <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                    <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                    <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a
+                    href="#">Politique de confidentialité</a></p>
+        </div>
+    </div>
+</footer>
+<script src="js/script.js"></script>
+
+<script>
+    // Filtrage de la galerie
+    document.addEventListener('DOMContentLoaded', function () {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Retirer la classe active de tous les boutons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Ajouter la classe active au bouton cliqué
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+                filterGalleryItems(filterValue);
+            });
+        });
+
+        // Fonction de filtrage
+        function filterGalleryItems(category) {
+            galleryItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Recalculer la disposition de la galerie après filtrage
+            setTimeout(() => {
+                // Force un recalcul du layout
+                document.querySelector('.gallery').style.display = 'none';
+                document.querySelector('.gallery').offsetHeight; // Trigger reflow
+                document.querySelector('.gallery').style.display = 'block';
+            }, 100);
+        }
+
+        // Lightbox functionality
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+        const galleryImages = document.querySelectorAll('.gallery-img');
+
+        let currentImageIndex = 0;
+        let filteredImages = [];
+
+        // Ouvrir la lightbox
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', function () {
+                // Récupérer toutes les images visibles
+                filteredImages = Array.from(document.querySelectorAll('.gallery-item[style="display: block"] .gallery-img'));
+                currentImageIndex = filteredImages.indexOf(this);
+
+                // Afficher l'image dans la lightbox
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                lightbox.classList.add('active');
+
+                // Empêcher le défilement de la page
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Fermer la lightbox
+        lightboxClose.addEventListener('click', function () {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Navigation dans la lightbox
+        lightboxPrev.addEventListener('click', function () {
+            if (filteredImages.length > 0) {
+                currentImageIndex = (currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
+                lightboxImg.src = filteredImages[currentImageIndex].src;
+                lightboxImg.alt = filteredImages[currentImageIndex].alt;
+            }
+        });
+
+        lightboxNext.addEventListener('click', function () {
+            if (filteredImages.length > 0) {
+                currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
+                lightboxImg.src = filteredImages[currentImageIndex].src;
+                lightboxImg.alt = filteredImages[currentImageIndex].alt;
+            }
+        });
+
+        // Fermer la lightbox en cliquant à l'extérieur de l'image
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Navigation au clavier
+        document.addEventListener('keydown', function (e) {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    lightboxPrev.click();
+                } else if (e.key === 'ArrowRight') {
+                    lightboxNext.click();
+                }
+            }
+        });
+    });
+</script>
+
+</html>

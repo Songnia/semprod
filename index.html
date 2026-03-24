@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEM PRODUCTION - Innovation au service de la tradition</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Définition de l'icône du site (favicon) -->
+    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+
+    <!-- Scripts i18n -->
+    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n.js"></script>
+
+    <style>
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .lang-switch a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 5px;
+            opacity: 0.7;
+        }
+
+        .lang-switch a.active-lang {
+            opacity: 1;
+            border-bottom: 2px solid #fff;
+        }
+
+        .lang-switch span {
+            color: #fff;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="qui-sommes-nous.html"><span data-i18n="nav.about">Qui Sommes-Nous ?</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise" data-i18n="nav.about.company">Notre
+                                    Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire" data-i18n="nav.about.history">Notre Histoire</a>
+                            </li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur" data-i18n="nav.about.value_chain">Notre
+                                    Chaine de Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur" data-i18n="nav.about.promoter">Le Promoteur</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#products-section"><span data-i18n="nav.products">Produits</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <script>
+                            // Fonction pour afficher les détails du produit
+                            function displayProductMenu() {
+                                const product = productsData;
+                                const lang = localStorage.getItem('siteLang') || 'fr';
+                                const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                if (product) {
+                                    container_dropdown_menu.innerHTML = product.map(product => `
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names[lang] || product.names.fr}</a></li>
+                                        `).join('');
+                                    return;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', displayProductMenu);
+                            window.addEventListener('languageChanged', displayProductMenu);
+                        </script>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Evenements</a></li>
+                    <li class="dropdown">
+                        <a href="technologie.html"><span data-i18n="nav.tech">Notre Technologie</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche" data-i18n="nav.tech.research">La recherche</a>
+                            </li>
+                            <li><a href="technologie.html#la-Conception-Fabrication"
+                                    data-i18n="nav.tech.design">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation"
+                                    data-i18n="nav.tech.machine">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="espritngon.html"><span data-i18n="nav.spirit">Esprit Ngon</span> <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits" data-i18n="nav.spirit.history">
+                                    Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette" data-i18n="nav.spirit.recipe">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries" data-i18n="nav.spirit.pastries">Patisseries</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Photos</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Vidéos</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="lang-switch dropdown">
+                    <a href="#" class="current-lang-display">
+                        <span id="current-lang-icon">🇫🇷</span> 
+                        <span id="current-lang-text">FR</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                    </ul>
+                </div>
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="content-image-etoiles">
+            <a href="index.html" class="logo logoeurogon"><img src="assets/images/logoNgon.png" alt=""></a>
+            <img id="cinq-etoiles" src="assets/images/5etoiles-ok.png" alt="">
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <p class="subtitle" data-i18n="hero.subtitle">BIENVENUE CHEZ SEM PRODUCTION</p>
+                <h1 data-i18n="hero.title">Un Trésor naturel</h1>
+                <p id="description-hero" data-i18n="hero.desc">
+                    Issus d'une longue recherche, les produits de la marque <strong>Ngon de SEM Production</strong>
+                    proviennent du décorticage industriel et de la transformation des graines de courge tropicales à
+                    coque dure, 'pistaches africaines' propre à certains terroirs du Cameroun.
+                    Communément appelés <em>pistaches</em>, leur nom scientifique est <strong>Cucumeropsis
+                        mannii</strong>.
+                    Ils sont produits par une agriculture biologique (+) avec récolte tous les deux ans.<br>
+                    C'est la reine des curcubitacées ; elle possède de nombreuses vertus exceptionnelles en santé,
+                    cosmétique et diététique.
+                </p>
+                <!--<a href="#products-section" class="btn">Découvrir nos produits</a>-->
+            </div>
+            <div class="hero-image">
+                <img src="/assets/images/Pack Complet.png" alt="SEM PRODUCTION - Produits naturels">
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Section -->
+    <section class="rubrique-section" style="padding-bottom: 0;">
+        <div class="section-title" id="rubrique-section-title">
+            <h2 data-i18n="section.path.title">Notre Parcours, une Solution Naturelle Endogène</h2>
+        </div>
+
+        <div class="rubrique-content">
+            <div class="rubrique-item large">
+                <a href="">
+                    <div class="promo-text">
+                        <div class="product-img" style="background-image: url(assets/images/calebasse-pistache.png) ;">
+                        </div>
+                        <h2 data-i18n="section.path.seed">Notre Graine</h2>
+                        <div class="go-corner">
+                            <div class="go-arrow">→</div>
+                        </div>
+                        <!--<img src="assets/images/calebasse-pistache.png" alt="" class="product-img">-->
+                    </div>
+                </a>
+            </div>
+            <div class="rubrique-item ">
+                <a href="technologie.html">
+                    <div class="promo-text">
+                        <div class="product-img"
+                            style="background-image: url(assets/images/machine-a-decortiquer.png) ;"></div>
+                        <h2 data-i18n="section.path.tech">Notre Technologie</h2>
+                        <div class="go-corner">
+                            <div class="go-arrow">→</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="rubrique-item">
+                <a href="#products-section">
+                    <div class="promo-text">
+                        <div class="product-img" style="background-image: url(assets/images/Pack\ Complet.png) ;"></div>
+                        <h2 data-i18n="section.path.products">20 Produits</h2>
+                        <div class="go-corner">
+                            <div class="go-arrow">→</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="rubrique-item">
+                <a href="espritngon.html#histoire-et-biens-faits">
+                    <div class="promo-text">
+                        <div class="product-img" style="background-image: url(assets/images/famille-africaine6.png) ;">
+                        </div>
+                        <h2 data-i18n="section.path.wellbeing">Votre Bien-Etre</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products-section">
+        <div class="container" id="products-section-container">
+            <div class="section-title">
+                <h2 data-i18n="section.products.title">Nos produits</h2>
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa Cum sociis natoque penatibus.</p>-->
+            </div>
+            <script>
+                function displayProductDetails() {
+                    const product = productsData;
+                    console.log(product)
+                    const container = document.getElementById('products-grid');
+                    /*if (product) {
+                        container.innerHTML = product.map(product =>`
+                            <div class="product-card" data-category="nutri-Sante">
+                                <a href=" detailproduit.html?id=${product.id}">
+                                <div class="product-img" style="background-image: url(${product.images[0]});">
+                                    <div class="product-badge">BIO</div>
+                                </div></a>
+                                <div class="product-content">
+                                    <h3 class="product-name">${product.names.fr}</h3>
+                                    <p class="product-description">${product.brand.fr}</p>
+                                    
+                                    <div class="product-price">
+                                    ${product.formats[0].price} <span class="price-currency">FCFA</span>
+                                    </div>
+                                    
+                                    <div class="product-actions">
+                                        <button class="btn btn-primary btn-cart add-to-cart" data-product="${product.names.fr}" data-price="${product.formats[0].price}">
+                                            <i class="fas fa-shopping-cart"></i> 
+                                        </button>
+                                        <button class="btn btn-secondary btn-checkout-platform" onclick="commandeDirect('${product.names.fr.replace(/'/g, "\\'")}', ${product.formats[0].price})"  data-product="${product.names.fr}" data-price="${product.formats[0].price}">
+                                            <i class="fab fa-whatsapp"></i> Commander
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        `).join('');
+                        return;
+                    }*/
+                    if (product) {
+                        const lang = localStorage.getItem('siteLang') || 'fr';
+                        container.innerHTML = product.map(product => {
+                            // Vérifier si la catégorie est spéciale
+                            const isSpecialCategory = product.category && product.category.includes("speciale");
+
+                            return `
+                                    <div class="product-card" data-category="${product.category || 'nutri-Sante'}">
+                                        <a href="detailproduit.html?id=${product.id}">
+                                             ${product.category && product.category.includes("aperitif-utile") ? `
+                                            <div class="product-img" style="background-image: url(${product.images[0]});">
+                                                
+                                            </div>                                             
+                                             `:
+                                    `<div class="product-img" style="background-image: url(${product.images[0]});">
+                                                <div class="product-badge" data-i18n="badge.bio">BIO</div>
+                                            </div>`}
+                                        </a>
+                                        <div class="product-content">
+                                            <h3 class="product-name">${product.names[lang] || product.names.fr}</h3>
+                                            <p class="product-description">${product.brand[lang] || product.brand.fr}</p>
+                                            
+                                            ${isSpecialCategory ?
+                                    /* PRODUIT SPÉCIAL - Pas de prix, bouton "Nous contacter" */
+                                    `
+                                                <div class="product-actions">
+                                                    <button class="btn btn-secondary btn-checkout-platform" onclick="commandeDirectSpeciale('${product.names.fr.replace(/'/g, "\\'")}')">
+                                                        <i class="fab fa-whatsapp"></i> <span style="font-sise: 0.5em;" data-i18n="btn.contact_us"> Nous contacter </span>
+                                                    </button>
+                                                </div>
+                                                ` :
+                                    /* PRODUIT NORMAL - Avec prix et panier */
+                                    `
+                                                <div class="product-price">
+                                                    ${product.formats[0].price} <span class="price-currency">FCFA</span>
+                                                </div>
+                                                
+                                                <div class="product-actions">
+                                                    <button class="btn btn-primary btn-cart add-to-cart" data-product="${product.names.fr}" data-price="${product.formats[0].price}">
+                                                        <i class="fas fa-shopping-cart"></i><span data-i18n="btn.add_cart">Ajouter au panier</span>
+                                                    </button>
+                                                    <!--<button class="btn btn-secondary btn-checkout-platform" onclick="commandeDirect('${product.names.fr.replace(/'/g, "\\'")}', ${product.formats[0].price})" data-product="${product.names.fr}" data-price="${product.formats[0].price}">
+                                                        <i class="fab fa-whatsapp"></i> Commander
+                                                    </button>-->
+                                                </div>
+                                                `
+                                }
+                                        </div>
+                                    </div>
+                                `;
+                        }).join('');
+                        return;
+                    }
+                }
+                // Charger les détails du produit au chargement de la page
+                document.addEventListener('DOMContentLoaded', displayProductDetails);
+            </script>
+            <div class="products-grid" id="products-grid">
+                <!-- Produit 1 -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3 data-i18n="cart.title">Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            <span data-i18n="cart.total">Total:</span> <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout btn-checkout-platform" id="checkout-whatsapp" data-i18n="cart.checkout">
+            Commander maintenant
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform">&times;</span>
+            <h2 data-i18n="modal.whatsapp.title">Vous serez mis en relation avec notre service Commercial</h2>
+            <span data-i18n="modal.whatsapp.subtitle">Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                <div class="section-choice">
+                    <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="modal.whatsapp.continue">Continuer</span>
+                    </div>
+                    <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->
+                </div>
+                <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail">&times;</span>
+            <h2 data-i18n="modal.order.title">Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name" data-i18n="modal.order.name">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone" data-i18n="modal.order.phone">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone">
+                <label for="command-guests" data-i18n="modal.order.order_label">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-i18n="modal.order.submit">Commander</span>
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+    <!--<div id="email-modal" class="">
+        <div class="modal-content">
+            <span class="close-btn" id="email-close">&times;</span>
+            <h2>Commande par Email</h2>
+            <p>Remplissez vos informations pour recevoir votre commande par email</p>
+            
+            <div class="order-summary" id="email-order-summary">
+            </div>
+            
+            <form id="email-order-form">
+                <div class="form-group">
+                    <label for="customer-name">Nom complet *</label>
+                    <input type="text" id="customer-name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-email">Email *</label>
+                    <input type="email" id="customer-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-phone">Téléphone</label>
+                    <input type="tel" id="customer-phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-address">Adresse de livraison</label>
+                    <textarea id="customer-address" name="address"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-message">Message supplémentaire</label>
+                    <textarea id="customer-message" name="message" placeholder="Instructions spéciales, notes..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Envoyer la commande
+                </button>
+            </form>
+        </div>
+    </div>-->
+
+    <!-- Notification 
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i> Votre commande a été envoyée avec succès!
+    </div>-->
+
+</body>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                <p data-i18n="footer.desc">Depuis 2017, nous créons des produits naturels de qualité en utilisant des
+                    technologies innovantes
+                    tout en préservant les traditions.</p>
+                <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                    <i class="fab fa-whatsapp"> </i> <span data-i18n="footer.msg">Nous laisser un message</span>
+                </a>
+            </div>
+            <div class="footer-column">
+                <h3 data-i18n="footer.nav">Navigation Rapide</h3>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li><a href="qui-sommes-nous.html" data-i18n="nav.about">Qui sommes-nous ?</a></li>
+                    <li><a href="products-section" data-i18n="nav.products">Nos Produits</a></li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Nos Événements</a></li>
+                    <li><a href="technologie.html" data-i18n="nav.tech">Notre Technologie</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 data-i18n="footer.contact">Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                    <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                    <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                    <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                </ul>
+                <div class="container-social-icons">
+                    <div class="container-icon">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                    </div>
+                    <div class="container-icon">
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                    </div>
+
+                    <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                    <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                    <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SEM PRODUCTION. <span data-i18n="footer.rights">Tous droits réservés.</span> | <a href="#"
+                    data-i18n="footer.legal">Mentions légales</a> | <a href="#" data-i18n="footer.privacy">Politique de
+                    confidentialité</a></p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js" defer></script>
+<script src="js/product-data.js"></script>
+
+</html>

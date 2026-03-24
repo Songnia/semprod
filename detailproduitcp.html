@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du Produit</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Retour aux produits</a>
+        
+        <div id="product-detail-container">
+            <!-- Le contenu du produit sera chargé dynamiquement ici -->
+            <div class="loading">Chargement du produit...</div>
+        </div>
+    </div>
+
+    <script src="js/product-data.js"></script>
+    <script>
+        // Fonction pour récupérer le paramètre ID de l'URL
+        function getProductIdFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return parseInt(urlParams.get('id'));
+        }
+
+        // Fonction pour trouver un produit par son ID
+        function findProductById(id) {
+            return productsData.find(product => product.id === id);
+        }
+
+        // Fonction pour afficher les détails du produit
+        function displayProductDetails() {
+            const productId = getProductIdFromURL();
+            const product = findProductById(productId);
+            const container = document.getElementById('product-detail-container');
+            
+            if (!product) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h2>Produit non trouvé</h2>
+                        <p>Le produit que vous recherchez n'existe pas ou a été supprimé.</p>
+                        <a href="index.html" class="btn">Retour à la liste des produits</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Générer le HTML pour le produit
+            container.innerHTML = `
+                <div class="product-page">
+                    <div class="product-image">
+                        <img src="${product.images[0]}" alt="${product.names.fr}">
+                    </div>
+                    
+                    <div class="product-info">
+                        <h1 class="product-title">${product.names.fr}</h1>
+                        <p class="product-subtitle">${product.names.en}</p>
+                        
+                        <div class="product-price">${product.formats[0].price}</div>
+                        
+                        <div class="product-description">
+                            <p>${product.description.fr}</p>
+                        </div>
+                        
+                        ${product.formats.length > 1 ? `
+                        <div class="format-selector">
+                            <h3>Choisissez le format :</h3>
+                            <div class="format-options">
+                                ${product.formats.map(format => `
+                                    <div class="format-option" data-price="${format.price}">
+                                        ${format.weight || format.volume}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
+                        
+                        <div class="product-actions" id="pad">
+                            <button class="btn btn-primary" id="add-to-cart">
+                                Ajouter au panier
+                            </button>
+                        </div>
+                        
+                        <div class="product-meta">
+                            <div><strong>Catégorie :</strong> ${product.category}</div>
+                            <div><strong>Tags :</strong> ${product.tags.join(', ')}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tabs-header">
+                        <div class="tab active" data-tab="description">Description</div>
+                        <div class="tab" data-tab="composition">Composition</div>
+                        <div class="tab" data-tab="usage">Utilisation</div>
+                        <div class="tab" data-tab="testimonials">Témoignages</div>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-panel active" id="description-panel">
+                            <h3>Description</h3>
+                            <p>${product.description.fr}</p>
+                            <p>${product.description.en}</p>
+                        </div>
+                        
+                        <div class="tab-panel" id="composition-panel">
+                            <h3>Composition</h3>
+                            <table>
+                                ${Object.entries(product.composition.fr).map(([key, value]) => `
+                                    <tr>
+                                        <td>${key}</td>
+                                        <td>${value}</td>
+                                    </tr>
+                                `).join('')}
+                            </table>
+                        </div>
+                        
+                        <div class="tab-panel" id="usage-panel">
+                            <h3>Mode d'utilisation</h3>
+                            <ul>
+                                ${product.usage.fr.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="tab-panel" id="testimonials-panel">
+                            <h3>Témoignages clients</h3>
+                            ${product.testimonials.length > 0 ? `
+                                ${product.testimonials.map(testimonial => `
+                                    <div class="testimonial">
+                                        <h4>${testimonial.author} <span class="date">${testimonial.date}</span></h4>
+                                        <p>${testimonial.comment}</p>
+                                    </div>
+                                `).join('')}
+                            ` : '<p>Aucun témoignage pour le moment.</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Ajouter les événements après le chargement du HTML
+            addEventListeners(product);
+        }
+
+        // Fonction pour ajouter les événements
+        function addEventListeners(product) {
+            // Gestion des onglets
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const tabId = this.getAttribute('data-tab');
+                    const tabPanels = document.querySelectorAll('.tab-panel');
+                    tabPanels.forEach(panel => panel.classList.remove('active'));
+                    document.getElementById(`${tabId}-panel`).classList.add('active');
+                });
+            });
+
+            // Gestion des formats
+            const formatOptions = document.querySelectorAll('.format-option');
+            if (formatOptions.length > 0) {
+                formatOptions[0].classList.add('active');
+                
+                formatOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        formatOptions.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        const price = this.getAttribute('data-price');
+                        document.querySelector('.product-price').textContent = price;
+                    });
+                });
+            }
+
+            // Gestion du panier
+            document.getElementById('add-to-cart').addEventListener('click', function() {
+                const activeFormat = document.querySelector('.format-option.active');
+                const selectedFormat = activeFormat ? 
+                    product.formats.find(f => 
+                        f.weight === activeFormat.textContent.trim() || 
+                        f.volume === activeFormat.textContent.trim()
+                    ) : product.formats[0];
+                
+                alert(`Ajout au panier : ${product.names.fr} - ${selectedFormat.weight || selectedFormat.volume} - ${selectedFormat.price}`);
+                // Ici, vous ajouteriez le produit au panier
+            });
+        }
+
+        // Charger les détails du produit au chargement de la page
+        document.addEventListener('DOMContentLoaded', displayProductDetails);
+    </script>
+</body>
+</html>

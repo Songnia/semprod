@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <title>Esprit Ngon</title>
+    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n.js"></script>
+</head>
+
+<body>
+    <style>
+        /* Events Section */
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+        }
+
+        .events-section {
+            background-color: var(--light-color);
+        }
+
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin: 0 auto;
+        }
+
+        .container .section-title {
+            margin: 50px 0 0 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 90%;
+        }
+
+        .content-table {
+            width: 100%;
+            overflow-x: scroll;
+        }
+
+        table {
+            border-collapse: collapse;
+            /* To ensure the borders touch */
+            width: 100%;
+            /* Optional: to make it full width */
+            font-family: Arial, sans-serif;
+            /* A clear, standard font */
+        }
+
+        /* Style for the header row (thead and th) */
+        thead th {
+            background-color: #8BC34A;
+            /* Green background color from the image */
+            color: white;
+            /* White text color */
+            padding: 10px 5px;
+            /* Padding for better spacing */
+            border: 1px solid white;
+            /* White borders for separation */
+            text-align: center;
+            /* Center the years */
+            font-weight: bold;
+            /* Bold text for the header */
+            vertical-align: middle;
+            /* Vertically align middle */
+            font-size: 14px;
+            /* Adjust font size if necessary */
+        }
+
+        /* Style for the body cells (td) */
+        tbody td {
+            background-color: white;
+            /* White background for the content rows */
+            color: black;
+            /* Black text color */
+            padding: 10px 5px;
+            /* Padding for content cells */
+            border: 1px solid #ccc;
+            /* Light gray border for internal lines */
+            text-align: center;
+            /* Center the text */
+            vertical-align: top;
+            /* Align content to the top (as it appears in the image) */
+            font-size: 14px;
+            /* Adjust font size if necessary */
+            height: 100px;
+            /* Optional: to ensure a minimum height and accommodate the text */
+        }
+
+        /* Specific styling for the cells to match the white borders in the header/body separation */
+        table {
+            border: 1px solid #ccc;
+            /* General outer border */
+        }
+
+        /* Remove or adjust the inner borders to match the image precisely */
+        thead th:first-child {
+            border-left: none;
+            /* Remove left border of the first header cell */
+        }
+
+        thead th:last-child {
+            border-right: none;
+            /* Remove right border of the last header cell */
+        }
+
+        /* For the image, the header seems to have white internal lines, so the white border on th is a good approximation */
+
+        /* Adjusting the border color to make it closer to the image, which seems to have a slightly darker line separating the header from the body, but mainly white between the header cells. */
+        tbody tr:first-child td {
+            border-top: 1px solid #ccc;
+            /* Separator line between header and body */
+        }
+
+        .event-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .event-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-content {
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+
+        }
+
+        .recette-section {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content-image {
+            border-radius: 10px;
+            height: auto;
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            /*box-shadow: var(--shadow);*/
+        }
+
+        .content-image img,
+        .content-image video {
+            width: 100%;
+            display: block;
+            /*transition: var(--transition);*/
+        }
+
+        .content-image:hover img,
+        .content-image:hover video {
+            transform: scale(1.05);
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+        }
+
+        .event-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .event-author {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .event-date {
+            margin-left: 5px;
+        }
+
+        .event-divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 20px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .event-content {
+                padding: 20px;
+                flex-direction: column-reverse;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .events-list {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+        }
+    </style>
+    <!-- Header -->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+                            
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="qui-sommes-nous.html" data-i18n="nav.about">Qui Sommes-Nous ? <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise" data-i18n="nav.about_company">Notre
+                                    Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire" data-i18n="nav.about_history">Notre Histoire</a>
+                            </li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur" data-i18n="nav.about_value">Notre Chaine de
+                                    Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur" data-i18n="nav.about_promoter">Le Promoteur</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#products-section" data-i18n="nav.products">Produits <i
+                                class="fas fa-chevron-down"></i></a>
+                        <script src="js/product-data.js"></script>
+                        <script>
+                            // Fonction pour afficher les détails du produit
+                            function displayProductMenu() {
+                                const product = productsData;
+                                const currentLang = localStorage.getItem('siteLang') || 'fr';
+                                console.log(product)
+                                const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                if (product) {
+                                    container_dropdown_menu.innerHTML = product.map(product => `
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names[currentLang]}</a></li>
+                                        `).join('');
+                                    return;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', displayProductMenu);
+                            window.addEventListener('languageChanged', displayProductMenu);
+                        </script>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Evenements</a></li>
+                    <li class="dropdown">
+                        <a href="technologie.html" data-i18n="nav.technology">Notre Technologie <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche" data-i18n="nav.tech_research">La recherche</a>
+                            </li>
+                            <li><a href="technologie.html#la-Conception-Fabrication"
+                                    data-i18n="nav.tech_design">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation"
+                                    data-i18n="nav.tech_machine">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="espritngon.html" data-i18n="nav.esprit">Esprit Ngon <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits" data-i18n="nav.esprit_history">
+                                    Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette" data-i18n="nav.esprit_recipe">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries" data-i18n="nav.esprit_pastry">Patisseries</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Nous contacter</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="lang-switch dropdown">
+                    <a href="#" class="current-lang-display">
+                        <span id="current-lang-icon">🇫🇷</span> 
+                        <span id="current-lang-text">FR</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                    </ul>
+                </div>
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <!--<div class="section-title">
+                <h2>Esprit Ngon</h2>
+                <p></p>
+            </div>-->
+            <!--<div class="content-image">
+                <img src="assets/images/emplysem-ConvertImage.jpg" alt="">
+            </div>-->
+
+            <div class="events-list">
+                <!-- Événement 1 -->
+                <div class="section-title">
+                    <!--<h2>Une Qualité Maîtrisée à Chaque Étape</h2>-->
+                    <h2 id="histoire-et-biens-faits" data-i18n="esprit.s1.title">Histoire et Biensfaits</h2>
+                </div>
+                <div class="event-item">
+                    <div class="event-content">
+                        <div data-i18n="esprit.s1.content">
+                            <h3 class="event-title">En bref</h3>
+                            <p class="event-description">Issus d’une longue recherche, nos produits proviennent du
+                                décorticage industriel et de la transformation des graines de courge biologique à coque
+                                dure propres à certains terroirs d’Afrique. Leur nom scientifique est cucumeropsis
+                                mannii. C’est la reine des graines de courge. Elle possède des vertus exceptionnelles en
+                                Santé, Cosmétique, Diététique .</p>
+
+                            <h3 class="event-title">Nos missions</h3>
+                            <p class="event-description">Par la recherche, l’industrialisation et la commercialisation
+                                nous travaillons pour mettre à votre disposition les produits dérivés de cette graine de
+                                courge pour votre Santé, Nutrition, Beauté et Bien-Être. Nous avons le souci développer
+                                l’agro-industrie et l’emploi local tout en préservant l’environnement. Chez nous vous
+                                achetez plus qu’un produit: vous êtes acteur d’un développement local tout ayant du
+                                bien-être. Nous sommes aussi propriétaires de la marque déposée Ngon . </p>
+
+                            <h2>Histoire sans filtre </h2>
+                            <p class="event-description"></p>
+                            <div class="content-table">
+                                <table>
+                                    <thead>
+                                        <th>1988</th>
+                                        <th>1985</th>
+                                        <th>2015</th>
+                                        <th>2016-2017</th>
+                                        <th>2017</th>
+                                        <th>2018</th>
+                                        <th>2019</th>
+                                        <th>2020</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Début de la recherche</td>
+                                            <td>Premier Brevet en France</td>
+                                            <td>Fin du prototype opérationnel. Deuxième Brevet d’invention à OAPI.</td>
+                                            <td>Construction des machines et de l’usine pilote.</td>
+                                            <td>SARL créé en octobre 2017, début du décorticage industriel.</td>
+                                            <td>Mise en place de la section Huilerie : Huile et Farine 2018.</td>
+                                            <td>Création et démarrage de la commercialisation des produits innovant a
+                                                base de pistaches.</td>
+                                            <td>Certification Biologique.</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <p class="event-description"> </p>
+
+                            <h3 class="event-title">Pourquoi consommer de la graine de courge et son huile ?</h3>
+                            <p class="event-description">Historiquement parlant, les graines de courges sont conseillées
+                                aux hommes notamment pour l’entretien de la prostate. Cependant, les recherches montrent
+                                que cette graine reine a de nombreuses vertus pour tous, femmes comme hommes que nous
+                                résumons dans le slogan Santé et beauté aux 5 étoiles. Ces cinq étoiles sont:</p>
+                            <p class="event-description">
+
+                            </p>
+                            <ul>
+                                <li>Le rajeunissement, c est une véritable graine de jouvence.</li>
+                                <li>La nutrition: ces graines sont de petites bombes nutritionelles.</li>
+                                <li>La peau: son huile est anti-age, prévient les vergetures.</li>
+                                <li>Les cheveux: son huile fait briller et pousser les cheveux, prévient les chutes.
+                                </li>
+                                <li>La prostate: entretien de la prostate et prévention des problème liés à hypertrophie
+                                    bénigne</li>
+                            </ul> <br>
+
+                            <h3 class="event-title">En cas de troubles de la prostate </h3>
+                            <p class="event-description">L’huile de Pépins de Courge est traditionnellement conseillée
+                                dans la prévention de l’hypertrophie bénigne de la prostate (adénome). Une étude publiée
+                                dans le « Journal of Medicinal Food » a évalué son effet sur l’hyperplasie de la
+                                prostate induite par la testostérone chez l’animal. Pour connaitre bien l’histoire,
+                                cette étude a conclu au bénéfice préventif de l’huile de pépins de courge pour inhiber
+                                l’hyperplasie de la prostate induite par la testostérone. Une autre étude publiée dans «
+                                Urologia Internationalis » a même permis d’obtenir une régression des marqueurs de
+                                l’hypertrophie prostatique. L’huile de Pépins de Courge est donc tout à fait
+                                recommandable dans le cadre de la prévention de l’adénome prostatique, bien avant le
+                                stade chirurgical de la prostate.
+                                <br> <span><strong>Conseil d’utilisation :</strong> par voie orale, 1 cuillère à café
+                                    par jour d’huile de Pépins de Courge en complément de l’utilisation d’autres
+                                    huiles</span>
+                            </p>
+
+
+                            <h3 class="event-title">Pour les peaux matures, sèches et déshydratées </h3>
+                            <p class="event-description">L’huile végétale de Pépins de Courge est un excellent anti-âge,
+                                notamment grâce à sa forte teneur en polyphénols à l’activité anti-oxydante. Ses
+                                molécules captent les radicaux libres à l’origine de la formation des rides et du
+                                vieillissement cellulaire. Riche en acide linoléique, cette huile va également favoriser
+                                la régénération cutanée, en plus d’être très nourrissante. </p>
+                            <p>l’huile de Pépins de Courge est intéressante en soin des peaux matures.</p>
+                            <span><strong>Conseil d’utilisation : </strong> par voie cutanée, quelques gouttes en
+                                massage sur les zones concernées</span>
+                            <p class="event-description"></p>
+
+                            <h3 class="event-title">Contre la chute de cheveux, les cheveux ternes et cassants </h3>
+                            <p class="event-description">L’huile de Pépins de Courge va nourrir en profondeur la fibre
+                                capillaire pour la réparer, l’entretenir et la renforcer. Elle va ainsi assouplir,
+                                adoucir et fortifier les cheveux, afin qu’ils deviennent plus résistants aux agressions
+                                extérieures.
+                                <br><span><strong>Conseil d’utilisation :</strong>en bain d huile, en masque
+                                    capillaire</span>
+                            </p>
+
+
+                            <h3 class="event-title">Pour son intérêt nutritionnel </h3>
+                            <p class="event-description">Avec une dominante en acides gras polyinsaturés, l’huile de
+                                Pépin de Courge est une excellente huile diététique pouvant entrer dans un régime
+                                cardio-protecteur, anti-cholestérol. Elle est largement composée d’oméga 6, il sera donc
+                                important de consommer des huiles riches en oméga 3 en parallèle afin d’équilibrer le
+                                ratio oméga 6/oméga 3.L’huile de Pépins de Courge “Ngon” est également très riche en
+                                tocophérols gamma, et contient des minéraux dont le zinc et acides aminés (citrulline,
+                                cucurbitine).
+                                <br><span><strong>Conseil d’utilisation :</strong>par voie orale, 1 à 2 cuillères à
+                                    soupe d’huile de Pépins de Courge servira à couvrir les apports journaliers
+                                    conseillés en oméga 6. A utiliser en assaisonnement sur des salades par
+                                    exemple.</span>
+                                <br><span><strong>Autres huiles végétales adaptées :</strong> les huiles de <a
+                                        href="https://www.compagnie-des-sens.fr/huile-vegetale-lin/"
+                                        style="color: blue; text-decoration: underline; ">Lin</a> ou de <a
+                                        href="https://www.compagnie-des-sens.fr/huile-vegetale-perilla/"
+                                        style="color: blue; text-decoration: underline;">Périlla</a> sont très
+                                    intéressantes en nutrition car elles sont particulièrement riches en oméga 3. Elles
+                                    permettent d’équilibrer le rapport oméga 6/oméga 3. Il est recommandé d’apporter 5
+                                    fois plus d’oméga 3 que d’oméga 6 (ANSES).</span>
+                            </p>
+
+                            <p class="event-description"></p>
+
+                            <h3 class="event-title">Et la surprise! </h3>
+                            <p class="event-description">pour connaitre l’histoire, nos graines de courges sont
+                                particulièrement riches bien au-delà de la moyenne, c’est en grande partie à cause de la
+                                qualité du sol dans laquelle elle puise l’essentiel de ses nutriments, de la zone
+                                agro-écologique en Afrique équatoriale. Les graines de courges qui y poussent, notamment
+                                les graines à coque dure sont cultivéés tous les deux ans ce qui contribue à les
+                                maintenir comme les plus riches dans leur catégorie. </p>
+
+
+                            <h3 class="event-title">Notre huile, comment est-elle faite ? </h3>
+                            <p class="event-description">Notre huile est pressée à froid dans nos installations, sans
+                                aucun ingrédients ajouté, et filtrée par une décantation prolongée de plusieurs semaines
+                                afin de ne pas perdre les nutriments ni de les contaminer. </p>
+                            <p class="event-description">
+                                Les éléments biochimiques les plus abondants sont entre autres :
+                            <ul>
+                                <li><strong>Beta Sitostérol :</strong> <br>Gamma tocophérol Anti oxydant,
+                                    essentiellement curatif <br>Réduction de chute de cheveux <br>Réduction symptômes
+                                    ménopause </li>
+                                <li><strong>Vitamines E :</strong> <br>Réduction de l’inflammation de la prostate
+                                    <br>Alpha tocophérol Anti oxydant, essentiellement préventif
+                                </li>
+                            </ul>
+                            </p>
+                            <p class="event-description"></p>
+
+                            <h3 class="event-title">La farine allégée : </h3>
+                            <p class="event-description">Pourquoi « allégée » : <br>Tout simplement car elle est allégée
+                                en huile (moins 70%) <br>Elle est très concentrée en protéines et en minéraux. <br>Un
+                                produit diététique parfait pour les sportifs </p>
+
+                            <h3 class="event-title"> </h3>
+                            <p class="event-description"></p>
+
+                            <div class="event-divider"></div>
+                            <div class="event-meta">
+                                <span class="event-author">Sem Production</span>
+                                <span class="event-date">• Octobre 2015</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <!--<h2>Une Qualité Maîtrisée à Chaque Étape</h2>-->
+                    <h2 id="recette" data-i18n="esprit.recette.title">Recettes</h2>
+                </div>
+                <div class="event-item">
+                    <!-- Recette 1 -->
+                    <div class="event-content recette-section">
+                        <h2 class="event-title" data-i18n="esprit.recette1.title">Sauce Pistache Allégée</h2>
+                        <div data-i18n="esprit.recette1.desc">
+                            <p class="event-description">La sauce pistache, une découverte culinaire délicieuse et
+                                surprenante, promet de réveiller vos papilles pour une expérience gustative inoubliable.
+                                Issue d’une combinaison ingénieuse de pistaches finement moulues, d’épices exquises et
+                                d’autres ingrédients secrets, cette sauce offre une explosion de saveurs qui transcende
+                                les attentes culinaires.
+
+                                <br>D’une texture crémeuse et d’une teinte verdoyante, la sauce pistache apporte une
+                                touche d’originalité à une variété de plats. Son mariage subtil entre la douceur des
+                                pistaches et la complexité des épices crée une harmonie parfaite qui saura ravir les
+                                palais les plus exigeants. Que ce soit pour accompagner des plats traditionnels ou pour
+                                sublimer des créations contemporaines, la sauce pistache se révèle polyvalente, ajoutant
+                                une dimension gustative unique à chaque bouchée.
+
+                                <br>Prête à surprendre les amateurs de cuisine aventureux, la sauce pistache incarne
+                                l’art de marier des saveurs contrastantes de manière équilibrée. À la fois délicate et
+                                intense, cette découverte culinaire est destinée à devenir un incontournable dans votre
+                                répertoire gastronomique, transformant chaque repas en une expérience sensorielle
+                                délicieusement inédite.
+                            </p>
+                        </div>
+                        <div class="event-item">
+
+                            <div class="event-content">
+                                <div data-i18n="esprit.recette1.prep">
+                                    <h3>Préparation</h3>
+                                    <p class="event-description">
+                                    <ul>
+                                        <li><strong>• Etape1: </strong> <br>Faites chauffer de l’huile dans une marmite,
+                                            découper les oignons, tomates, poireau, carottes et les ajouter.</li>
+                                        <li><strong>• Etape2: </strong> <br>Ajouter les écrevisses écrasées, le poisson
+                                            fumé et la viande (précuite de préférence). Laisser mijoter pendant 10 min.
+                                        </li>
+                                        <li><strong>• Etape3: </strong> <br>Dans un récipient, mélanger le pistache avec
+                                            un verre d’eau afin d’obtenir une pâte homogène, puis ajouter la dans la
+                                            marmite avec un peu d’ail émincé et du poivre blanc. Laisser cuire pendant
+                                            30 min.</li>
+                                    </ul>
+                                    </p>
+
+                                    <p class="event-description"></p>
+                                    <h3>Informations</h3>
+                                    <ul>
+                                        <li>Nombre de personnes : 8</li>
+                                        <li>Temps de préparation : 10 min</li>
+                                        <li>Temps de cuisson : 45 min</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h3>Ingrédients</h3>
+                                    <ul>
+                                        <li>• 1/2 boîte de pistache allégée</li>
+                                        <li>• 1 verre d’eau</li>
+                                        <li>• Ecrevisses (poignée)</li>
+                                        <li>• Poissons sec (viande)</li>
+                                        <li>• Ail</li>
+                                        <li>• Sel</li>
+                                        <li>• Poivre</li>
+                                        <li>• Carottes (émincées)</li>
+                                        <li>• Oignon</li>
+                                        <li>• Poireau</li>
+                                        <li>• Tomates</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h2 class="event-description">Bon appétit !</h2>
+
+                                    <div class="event-divider"></div>
+                                    <div class="event-meta">
+                                        <span class="event-author">Sem Production</span>
+                                        <span class="event-date">• Octovre 2025</span>
+                                    </div>
+                                </div>
+                                <div class="content-image">
+                                    <img src="assets/images/Recettes/sauce-pistache.jpg" alt="">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Recette 2 -->
+                        <div class="event-item">
+
+                            <div class="event-content">
+
+                                <div data-i18n="esprit.recette2.prep">
+                                    <h2 class="event-title">Mets de Pistache Allégé</h2>
+                                    <h3>Préparation</h3>
+                                    <p class="event-description">
+                                    <ul>
+                                        <li><strong>• Etape1: </strong> <br>Mélanger 1/2 de la boîte farine Ngon avec le
+                                            même volume d’eau pour faire une pâte légère</li>
+                                        <li><strong>• Etape2: </strong> <br>Ajouter au mélange du sel, 2 oeufs, piment,
+                                            du poisson fumé, écrevisses (poignée), la viande, poivre</li>
+                                        <li><strong>• Etape3: </strong> <br>Disposer sur vos feuilles, attacher et
+                                            classer dans la marmite. Faire cuire pendant 1h30.</li>
+                                    </ul>
+                                    </p>
+
+                                    <p class="event-description"></p>
+                                    <h3>Informations</h3>
+                                    <ul>
+                                        <li>Nombre de personnes : 6</li>
+                                        <li>Temps de préparation : 20 min</li>
+                                        <li>Temps de cuisson : 1h30 min</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h3>Ingrédients</h3>
+                                    <ul>
+                                        <li>• 1/2 boîte de pistache allégée</li>
+                                        <li>• 1 verre d'eau</li>
+                                        <li>• 2 oeufs</li>
+                                        <li>• Poivre</li>
+                                        <li>• Poisson sec</li>
+                                        <li>• Viande</li>
+                                        <li>• Crevettes</li>
+                                        <li>• Piments</li>
+                                        <li>• Feuilles de bananier</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h2 class="event-description">Bon appétit !</h2>
+
+                                    <div class="event-divider"></div>
+                                    <div class="event-meta">
+                                        <span class="event-author">Sem Production</span>
+                                        <span class="event-date">• Octobre 2025</span>
+                                    </div>
+                                </div>
+                                <div class="content-image">
+                                    <img src="assets/images/Recettes/met-pistache.png" alt="">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Recette 3 -->
+                        <div class="event-item">
+
+                            <div class="event-content">
+                                <div data-i18n="esprit.recette3.prep">
+                                    <h2 class="event-title">Légumes aux Pistaches</h2>
+                                    <h3>Préparation</h3>
+                                    <p class="event-description">
+                                    <ul>
+                                        <li><strong>• Etape1: </strong> <br>Faites chauffer de l’huile dans une marmite,
+                                            découper les oignons, tomates, gingembre écrasé, la viande (précuite) et les
+                                            écrevisses écrasées</li>
+                                        <li><strong>• Etape2: </strong> <br>Ajouter la pâte de pistache (pistache + eau)
+                                            puis saler, mélanger et faite mijoter pendant 20 min.</li>
+                                        <li><strong>• Etape3: </strong> <br>Ajouter les légumes de votre choix (Follong
+                                            Ndapche…), mélanger et laisser cuire pendant 20 min.</li>
+                                    </ul>
+                                    </p>
+
+                                    <p class="event-description"></p>
+                                    <h3>Informations</h3>
+                                    <ul>
+                                        <li>Nombre de personnes : 6</li>
+                                        <li>Temps de préparation : 20 min</li>
+                                        <li>Temps de cuisson : 40 min</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h3>Ingrédients</h3>
+                                    <ul>
+                                        <li>• 1/2 boîte de pistache allégée</li>
+                                        <li>• Poissons sec ( ou viande)</li>
+                                        <li>• Ecrevisses</li>
+                                        <li>• Oignons</li>
+                                        <li>• Piments</li>
+                                        <li>• Gingembre</li>
+                                        <li>• Tomates</li>
+                                        <li>• Feuilles de follong</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h2 class="event-description">Bon appétit !</h2>
+
+                                    <div class="event-divider"></div>
+                                    <div class="event-meta">
+                                        <span class="event-author">Sem Production</span>
+                                        <span class="event-date">• Octobre 2025</span>
+                                    </div>
+                                </div>
+                                <div class="content-image">
+                                    <img src="assets/images/Recettes/folong.jpg" alt="">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Recette 4 -->
+                        <div class="event-item recette-section">
+                            <h2 class="event-title" data-i18n="esprit.recette4.title">Ngon Cake</h2>
+                            <div data-i18n="esprit.recette4.desc">
+                                <p class="event-description">Le Cake, véritable délice sucré, s’inscrit comme un
+                                    merveilleux dessert à savourer sans modération. Cette création gastronomique offre
+                                    une expérience sensorielle unique, une véritable symphonie de saveurs exquises qui
+                                    éveillent les papilles à chaque bouchée.
+
+                                    <br>Composé avec soin, le Ngon Cake est une harmonie parfaite entre des textures
+                                    moelleuses et des saveurs riches. Son nom, évocateur de délices, promet une
+                                    expérience gustative exceptionnelle. Les ingrédients soigneusement sélectionnés se
+                                    marient dans une danse gustative, créant une fusion équilibrée de douceur et de
+                                    complexité.
+
+                                    <br>Que ce soit la première ou la dernière bouchée, le Ngon Cake séduit par sa
+                                    capacité à transporter ceux qui le dégustent dans un univers de plaisir sucré. Les
+                                    nuances subtiles et les notes délicates se dévoilent progressivement, offrant une
+                                    expérience gourmande qui émerveille les sens.
+
+                                    <br> Le Ngon Cake incarne bien plus qu’un simple dessert ; c’est une invitation à un
+                                    voyage gustatif exceptionnel. À partager entre amis ou à savourer en solitaire,
+                                    chaque instant avec le Ngon Cake est une célébration des plaisirs sucrés, une
+                                    expérience à déguster sans retenue.
+                                </p>
+                            </div>
+                            <div class="event-content">
+                                <div data-i18n="esprit.recette4.prep">
+                                    <h3>Préparation</h3>
+                                    <p class="event-description">
+                                    <ul>
+                                        <li><strong>• Etape1: </strong> <br>Dans un récipient, mettre les œufs, le
+                                            beurre fondu, le sucre Puis mélanger jusqu’à obtenir l’homogéinité.</li>
+                                        <li><strong>• Etape2: </strong> <br>Ajouter dans ce mélange le pot de yaourt, la
+                                            farine de blé, la farine Ngon et la levure chimique. <br>Mélanger le tout.
+                                        </li>
+                                        <li><strong>• Etape3: </strong> <br>Ajouter le sucre vanillé et éventuellement
+                                            les morceaux de fruits confis ou des fruits secs.Verser dans un moule et le
+                                            mettre au four environ 35-40 min à 180°.</li>
+                                    </ul>
+                                    </p>
+
+                                    <p class="event-description"></p>
+                                    <h3>Informations</h3>
+                                    <ul>
+                                        <li>Nombre de personnes : 6</li>
+                                        <li>Temps de préparation : 10 min</li>
+                                        <li>Temps de cuisson : 40 min</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h3>Ingrédients</h3>
+                                    <ul>
+                                        <li>• 150g de Farine de Pistache Ngon Allégé</li>
+                                        <li>• 100g de farine de blé</li>
+                                        <li>• 100g de sucre</li>
+                                        <li>• 150g de beurre fondu</li>
+                                        <li>• 5 œufs</li>
+                                        <li>• 1 pot de yaourt de 125g</li>
+                                        <li>• 1 sachet de sucre vanillé</li>
+                                        <li>• 1 sachet de levure chimique</li>
+                                        <li>• Fruits confis ou fruits secs</li>
+                                    </ul>
+
+                                    <p class="event-description"></p>
+                                    <h2 class="event-description">Bon appétit !</h2>
+
+                                    <div class="event-divider"></div>
+                                    <div class="event-meta">
+                                        <span class="event-author">Sem Production</span>
+                                        <span class="event-date">• Octobre 2025</span>
+                                    </div>
+                                </div>
+                                <div class="content-image">
+                                    <img src="assets/images/Recettes/ngon-cake.jpeg" alt="">
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--</div>-->
+                    </div>
+                </div>
+
+                <div class="events-list">
+
+                    <!--<div class="section-title">
+                    <h2 id="">Utilisations</h2>
+                    <p>Découvrez notre processus de production rigoureux qui garantit l'excellence de nos produits</p>
+                </div>                 
+                <div class="event-item">
+                    <div class="event-content">
+                        <div class="content-image">
+                            <img src="assets/images/evenement2.jpg" alt="">
+
+                        </div> 
+                        <div>
+                            <h3 class="event-title">SEM Production Foire exposition de l'EEC juin 2018</h3>
+                            <p class="event-description">
+                                Occasion unique et rare, SEM production est présent à la foire exposition qui a lieu à Douala au quartier Makèpè rhone poulenc face église évangélique EEC du cinquantenaire. Au menu la découverte, l'exposition et la dégustation des produits de la marque "Ngon" aux 5 étoiles notamment l'huile précieuse, la farine allégée et protéinée... ainsi que quelques recettes qui en découlent. Un véritable régal pour les curieux visiteurs, la communauté évangélique repartis comblés...
+                            <div class="event-divider"></div>
+                            <div class="event-meta">
+                                <span class="event-author">Sem Production</span>
+                                <span class="event-date">• juin 2018</span>
+                            </div>                            
+                        </div> 
+
+                    </div>
+                </div>-->
+
+                    <div class="section-title">
+                        <h2 id="patisseries" data-i18n="esprit.patisserie.title">Pâtisserie</h2>
+                        <!--<p>Découvrez notre processus de production rigoureux qui garantit l'excellence de nos produits</p>-->
+                    </div>
+                    <!--<div class="event-item">
+                    <div class="event-content">
+                        <div class="content-image">
+                            <img src="assets/images/Gallerie/nouvelles-images/nov-2023-event/7.jpg" alt="">
+                        </div>
+                        <div>
+                            <h3 class="event-title">Lorem ipsum dolor sit amet.</h3>
+                            <p class="event-description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores aperiam, totam odio molestias nemo, maxime culpa est sapiente corporis dignissimos fugiat. Eveniet at magnam quia dicta facere quo doloremque sed corrupti perspiciatis illum. Maiores impedit qui quibusdam ad, aperiam obcaecati laudantium soluta corrupti reiciendis omnis deserunt vitae rem repellat beatae.
+                            </p>
+                            <div class="event-divider"></div>
+                            <div class="event-meta">
+                                <span class="event-author">Sem Production</span>
+                                <span class="event-date">•  Mai 2018</span>
+                            </div>                            
+                        </div>
+
+                    </div>
+                </div>-->
+
+                    <!--<div class="event-item">
+                    <div class="event-content">
+                        <div class="content-image">
+                            <img src="assets/images/evenement1.jpg" alt="">
+                        </div>
+                        <div>
+                            <h3 class="event-title">SEM Production Salon des Entrepreneur Octobre 2025</h3>
+                            <p class="event-description">
+    SEM production sera à la foire des entrepreneurs qui a lieu ce vendredi 10 Aout à l'hotel SAWA Novotel à partir de 09 heures. Une nouvelle occasion s'offre à vous de découvrir et vous offrir les vertus de la reine des graines de pistache et acquérir ses produits dérivés (huile précieuse, farine allégée, apéritif utile...) de la marque Ngon: Santé et beauté aux 5 étoiles.
+                            <div class="event-divider"></div>
+                            <div class="event-meta">
+                                <span class="event-author">Sem Production</span>
+                                <span class="event-date">• Octobre 2025</span>
+                            </div>                            
+                        </div>  
+
+                    </div>
+                </div>-->
+                </div>
+            </div>
+    </section>
+    <script src="js/script.js"></script>
+
+    <script>
+        // Animation au défilement pour les éléments d'événements
+        document.addEventListener('DOMContentLoaded', function () {
+            const eventItems = document.querySelectorAll('.event-item');
+
+            // Fonction pour vérifier si un élément est dans le viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                    rect.bottom >= 0
+                );
+            }
+
+            // Fonction pour animer les éléments lorsqu'ils entrent dans le viewport
+            function animateOnScroll() {
+                eventItems.forEach(item => {
+                    if (isInViewport(item) && !item.classList.contains('animated')) {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                            item.classList.add('animated');
+                        }, 100);
+                    }
+                });
+            }
+
+            // Écouter l'événement de défilement
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Animer les éléments déjà visibles au chargement
+            animateOnScroll();
+        });
+    </script>
+    <!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3 data-i18n="cart.title">Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            <span data-i18n="cart.total">Total:</span> <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout btn-checkout-platform" id="checkout-whatsapp" data-i18n="cart.checkout">
+            Commander maintenant
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform">&times;</span>
+            <h2 data-i18n="platform.modal_title">Vous serez mis en relation avec notre service Commercial</h2>
+            <span data-i18n="platform.modal_subtitle">Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                <div class="section-choice">
+                    <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="platform.whatsapp_btn">Continuer</span>
+                    </div>
+                    <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->
+                </div>
+                <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail">&times;</span>
+            <h2 data-i18n="form.modal_title">Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name" data-i18n="form.name_label">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone" data-i18n="form.phone_label">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone">
+                <label for="command-guests" data-i18n="form.order_label">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="form.submit_btn">Envoyer la Commande</span>
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+</body>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies innovantes
+                    tout en préservant les traditions.</p>
+                <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                    <i class="fab fa-whatsapp"> </i> Nous laisser un message
+                </a>
+            </div>
+            <div class="footer-column">
+                <h3>Navigation Rapide</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                    <li><a href="index.html#products-section">Nos Produits</a></li>
+                    <li><a href="evenements.html">Nos Événements</a></li>
+                    <li><a href="technologie.html">Notre Technologie</a></li>
+                    <li><a href="videos.html">Nos Vidéos</a></li>
+                    <li><a href="photos.html">Nos Photos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                    <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                    <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                    <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                </ul>
+                <div class="container-social-icons">
+                    <div class="container-icon">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                    </div>
+                    <div class="container-icon">
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                    </div>
+
+                    <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                    <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                    <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a
+                    href="#">Politique de confidentialité</a></p>
+        </div>
+    </div>
+</footer>
+
+
+
+</html>

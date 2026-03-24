@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+    <title>Contacter-nous</title>
+    <script src="js/i18n-data.js"></script>
+    <script src="js/i18n.js"></script>
+</head>
+<style>
+    /* Contact Section */
+    .contact-section {
+        background-color: var(--light-color);
+        padding: 20px 0;
+    }
+
+    /*.contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width:80%;
+            margin: 0 auto;
+        }*/
+    .contact-container {
+        display: flex;
+        gap: 50px;
+        max-width: 50%;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .contact-intro {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .contact-intro h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        font-family: var(--font-heading);
+        color: var(--primary-color);
+    }
+
+    .contact-intro h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #666;
+        font-weight: 400;
+    }
+
+    .contact-intro p {
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    /* Contact Form */
+    .contact-form {
+        background-color: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+    }
+
+    .form-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--primary-color);
+        font-family: var(--font-heading);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--dark-color);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+    }
+
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .checkbox-group input {
+        margin-top: 5px;
+    }
+
+    .checkbox-group label {
+        font-weight: 400;
+        font-size: 0.9rem;
+    }
+
+    .required {
+        color: #e53935;
+    }
+
+    /* Contact Methods */
+    .contact-methods {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .contact-method {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+
+    .contact-method:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .contact-details h3 {
+        margin-bottom: 8px;
+        font-size: 1.3rem;
+        color: var(--primary-color);
+    }
+
+    .contact-details p {
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .contact-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+
+    .contact-link:hover {
+        color: var(--secondary-color);
+    }
+
+    .whatsapp-btn {
+        display: inline-block;
+        background-color: #25D366;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: var(--transition);
+    }
+
+    .whatsapp-btn:hover {
+        background-color: #128C7E;
+        transform: translateY(-2px);
+    }
+
+    /* Map Section */
+    .map-section {
+        padding: 60px 0;
+    }
+
+    .map-container {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        height: 400px;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .contact-container {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+        }
+
+        .contact-intro h1 {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        section {
+            padding: 60px 0;
+        }
+
+        .contact-form {
+            padding: 30px 20px;
+        }
+
+        .contact-method {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+        }
+
+        .contact-intro h1 {
+            font-size: 2.2rem;
+        }
+    }
+
+    /* Success Message */
+    .success-message {
+        background-color: #4caf50;
+        color: white;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        text-align: center;
+        display: none;
+    }
+
+    .error-message {
+        color: #e53935;
+        font-size: 0.9rem;
+        margin-top: 5px;
+        display: none;
+    }
+</style>
+
+<body>
+    <!-- Header -->
+    <header id="header-id">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+                            
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li class="dropdown">
+                        <a href="qui-sommes-nous.html" data-i18n="nav.about">Qui Sommes-Nous ? <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="qui-sommes-nous.html#entreprise" data-i18n="nav.about_company">Notre
+                                    Entreprise</a></li>
+                            <li><a href="qui-sommes-nous.html#histoire" data-i18n="nav.about_history">Notre Histoire</a>
+                            </li>
+                            <li><a href="qui-sommes-nous.html#chaine-valeur" data-i18n="nav.about_value">Notre Chaine de
+                                    Valeur</a></li>
+                            <li><a href="qui-sommes-nous.html#promoteur" data-i18n="nav.about_promoter">Le Promoteur</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#products-section" data-i18n="nav.products">Produits <i
+                                class="fas fa-chevron-down"></i></a>
+                        <script src="js/product-data.js"></script>
+                        <script>
+                            // Fonction pour afficher les détails du produit
+                            function displayProductMenu() {
+                                const product = productsData;
+                                const currentLang = localStorage.getItem('siteLang') || 'fr';
+                                console.log(product)
+                                const container_dropdown_menu = document.getElementById('dropdown-menu');
+                                if (product) {
+                                    container_dropdown_menu.innerHTML = product.map(product => `
+                                            <li><a href="detailproduit.html?id=${product.id}">${product.names[currentLang]}</a></li>
+                                        `).join('');
+                                    return;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', displayProductMenu);
+                            window.addEventListener('languageChanged', displayProductMenu);
+                        </script>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Evenements</a></li>
+                    <li class="dropdown">
+                        <a href="technologie.html" data-i18n="nav.technology">Notre Technologie <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="technologie.html#la-recherche" data-i18n="nav.tech_research">La recherche</a>
+                            </li>
+                            <li><a href="technologie.html#la-Conception-Fabrication"
+                                    data-i18n="nav.tech_design">Conception et Fabrication</a></li>
+                            <li><a href="technologie.html#la-Machine-specialisation"
+                                    data-i18n="nav.tech_machine">Machine et specialisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="espritngon.html" data-i18n="nav.esprit">Esprit Ngon <i
+                                class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="espritngon.html#histoire-et-biens-faits" data-i18n="nav.esprit_history">
+                                    Histoire et Bienfaits</a></li>
+                            <li><a href="espritngon.html#recette" data-i18n="nav.esprit_recipe">Recette</a></li>
+                            <li><a href="espritngon.html#patisseries" data-i18n="nav.esprit_pastry">Patisseries</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Nous contacter</a></li>
+                </ul>
+            </nav>
+            <div class="icon-action">
+                <div class="lang-switch dropdown">
+                    <a href="#" class="current-lang-display">
+                        <span id="current-lang-icon">🇫🇷</span> 
+                        <span id="current-lang-text">FR</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                    </ul>
+                </div>
+                <div class="cart-icon" onclick="onlyopenCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <!-- Section 1: Titre et Introduction -->
+            <div class="section-title">
+                <h2 data-i18n="contact.title">Contactez-Nous</h2>
+                <p data-i18n="contact.subtitle">Une question ? Un projet ? Parlons-en !</p>
+                <!--<p>
+                    Que vous soyez un particulier curieux de nos produits, un professionnel souhaitant discuter d'un partenariat 
+                    ou que vous ayez simplement une question, notre équipe est à votre écoute. Utilisez le moyen de contact 
+                    qui vous convient le mieux.
+                </p>-->
+            </div>
+
+            <div class="contact-container">
+                <!-- Section 2: Formulaire de Contact -->
+                <!--<div class="contact-form">
+                    <h3 class="form-title">Envoyez-nous un message</h3>
+                    
+                    <div class="success-message" id="successMessage">
+                        Votre message a été envoyé avec succès ! Nous vous recontacterons dans les plus brefs délais.
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="fullName">Nom complet <span class="required">*</span></label>
+                            <input type="text" id="fullName" class="form-control" required>
+                            <div class="error-message" id="nameError">Veuillez entrer votre nom complet</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Adresse e-mail <span class="required">*</span></label>
+                            <input type="email" id="email" class="form-control" required>
+                            <div class="error-message" id="emailError">Veuillez entrer une adresse e-mail valide</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Numéro de téléphone</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Objet de votre demande <span class="required">*</span></label>
+                            <select id="subject" class="form-control" required>
+                                <option value="">Sélectionnez un objet</option>
+                                <option value="product">Question sur un produit</option>
+                                <option value="distributor">Devenir distributeur</option>
+                                <option value="quote">Demande de devis pour professionnels</option>
+                                <option value="other">Autre</option>
+                            </select>
+                            <div class="error-message" id="subjectError">Veuillez sélectionner un objet</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Votre message <span class="required">*</span></label>
+                            <textarea id="message" class="form-control" required></textarea>
+                            <div class="error-message" id="messageError">Veuillez entrer votre message</div>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="privacy" required>
+                            <label for="privacy">
+                                J'accepte que mes informations soient utilisées pour me recontacter dans le cadre de ma demande. <span class="required">*</span>
+                            </label>
+                        </div>
+                        <div class="error-message" id="privacyError">Vous devez accepter notre politique de confidentialité</div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Envoyer</button>
+                    </form>
+                </div>-->
+
+                <!-- Section 3: Autres Moyens de Nous Joindre -->
+                <div class="contact-methods">
+                    <!--<h3 class="form-title" style="margin-bottom: 20px;">Contact Direct</h3>-->
+
+                    <!-- Téléphone -->
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-i18n="contact.call">Appelez-nous</h3>
+                            <p><a href="tel:+237123456789" class="contact-link">+237 699 323 761</a></p>
+                            <p data-i18n="contact.availability">Disponible du Lundi au Vendredi, de 9h à 17h.</p>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <div class="contact-method">
+                        <div class="contact-icon" style="background-color: #25D366;">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-i18n="contact.whatsapp">Discutez avec nous sur WhatsApp</h3>
+                            <p data-i18n="contact.whatsapp_resp">Réponse rapide et personnalisée</p>
+                            <a href="https://api.whatsapp.com/send/?phone=237699323761&text=Bonjour%2C+j%27ai+une+question+concernant+les+produits+SEM+Prod.&type=phone_number&app_absent=0"
+                                class="whatsapp-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> <span data-i18n="contact.whatsapp_btn">Démarrer la
+                                    conversation</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-method">
+                        <div class="contact-icon" style="background-color: #D44638;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-i18n="contact.email">Écrivez-nous</h3>
+                            <p><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></p>
+                            <p data-i18n="contact.email_resp">Nous répondons sous 24 heures</p>
+                        </div>
+                    </div>
+
+                    <!-- Adresse -->
+                    <div class="contact-method">
+                        <div class="contact-icon" style="background-color: #FF9800;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-i18n="contact.visit">Rendez-nous visite</h3>
+                            <p data-i18n="contact.address1">Maison Bleu Bonamoussadi</p>
+                            <p data-i18n="contact.address2">Douala, Cameroun</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Carte de Localisation -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="contact.map_title">Où nous trouver</h2>
+                <p data-i18n="contact.map_subtitle">Visitez notre siège social à Douala</p>
+            </div>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.803030221202!2d9.733175074902344!3d4.090639897316291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10610de2bf062a75%3A0x9b91abe0633ff991!2sR%C3%A9sidence%20Maison%20Bleue!5e0!3m2!1sfr!2sfr"
+                    width="100%" height="400" style="border:0;" allowfullscreen>
+                </iframe>
+
+            </div>
+        </div>
+    </section>
+    <!-- Panier -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3 data-i18n="cart.title">Votre Panier</h3>
+            <div class="cart-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">
+            <span data-i18n="cart.total">Total:</span> <span id="cart-total">0</span> FCFA
+        </div>
+        <button class="cart-checkout btn-checkout-platform" id="checkout-whatsapp" data-i18n="cart.checkout">
+            Commander maintenant
+        </button>
+    </div>
+    <!-- Shopping Cart Modal (hidden by default) -->
+    <div id="platform-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-plateform">&times;</span>
+            <h2 data-i18n="platform.modal_title">Vous serez mis en relation avec notre service Commercial</h2>
+            <span data-i18n="platform.modal_subtitle">Par Whatsapp.</span>
+            <div id="platform-oprtion" class="platform-option">
+                <div class="section-choice">
+                    <div id="whatsapp-send" class="btn" href="" title="Commander par WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="platform.whatsapp_btn">Continuer</span>
+                    </div>
+                    <!--<div class="choise">
+                            <div id="email-send" title="Commander par Email" style="background-color: rgb(0, 123, 255); border-radius: 15px;" >
+                                <i class="fas fa-envelope choise-icon" style="font-size:70px;padding: 20px; color:white;"></i>
+                            </div>
+                            <p style="color: rgb(0, 123, 255);">Par Email</p>                        
+                        </div> -->
+                </div>
+                <!--<div class="section-choice">
+                        <p><strong>Par un appel direct: </strong><br> <i class="fas fa-phone"></i> +237 681 467 993  </p>
+                    </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande par mail Modal (hidden by default) -->
+    <div id="form-commande-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-btn-mail">&times;</span>
+            <h2 data-i18n="form.modal_title">Passer votre Commande</h2>
+            <form id="commande-form">
+                <!--<label for="command-email">E-mail:</label>
+                <input type="text" id="command-email" name="email" required>-->
+                <label for="command-name" data-i18n="form.name_label">Nom:</label>
+                <input type="text" id="command-name" name="name" required>
+                <label for="command-phone" data-i18n="form.phone_label">Téléphone:</label>
+                <input type="tel" id="command-phone" name="phone">
+                <label for="command-guests" data-i18n="form.order_label">Votre commande:</label>
+                <textarea id="commande-details" name="message" readonly></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submit-email-order">
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="form.submit_btn">Envoyer la Commande</span>
+                </button>
+            </form>
+            <div id="commande-commandponse" style="margin-top:10px;"></div>
+        </div>
+    </div>
+</body>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies innovantes
+                    tout en préservant les traditions.</p>
+                <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                    <i class="fab fa-whatsapp"> </i> Nous laisser un message
+                </a>
+            </div>
+            <div class="footer-column">
+                <h3>Navigation Rapide</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+                    <li><a href="index.html#products-section">Nos Produits</a></li>
+                    <li><a href="evenements.html">Nos Événements</a></li>
+                    <li><a href="technologie.html">Notre Technologie</a></li>
+                    <li><a href="videos.html">Nos Vidéos</a></li>
+                    <li><a href="photos.html">Nos Photos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                    <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                    <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                    <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                </ul>
+                <div class="container-social-icons">
+                    <div class="container-icon">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                    </div>
+                    <div class="container-icon">
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/237699323761">+237 699 323 761</a>
+                    </div>
+
+                    <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
+                    <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
+                    <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a
+                    href="#">Politique de confidentialité</a></p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+
+</html>

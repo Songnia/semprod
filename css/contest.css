@@ -1,0 +1,748 @@
+/* Contest Specific Styles - Festive Edition */
+:root {
+    --contest-primary: #d4af37;
+    /* Gold */
+    --contest-secondary: green;
+    /* Christmas Red */
+    --contest-dark: #1a472a;
+    /* Dark Green */
+    --contest-bg: #fdfbf7;
+    /* Warm White */
+    --contest-text: #333;
+}
+
+body {
+    background-color: var(--contest-bg);
+}
+
+/* Hero Section with Sparkles */
+.contest-hero {
+    background: linear-gradient(135deg, #1a472a 0%, #1d6806 100%);
+    color: white;
+    padding: 60px 20px 40px;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Sparkle Animation */
+.contest-hero::before,
+.participation-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(white, rgba(255, 255, 255, .3) 2px, transparent 3px),
+        radial-gradient(white, rgba(255, 255, 255, .25) 1px, transparent 2px),
+        radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 3px),
+        radial-gradient(white, rgba(255, 255, 255, .15) 1.5px, transparent 2.5px),
+        radial-gradient(white, rgba(255, 255, 255, .2) 1px, transparent 2px),
+        radial-gradient(white, rgba(255, 255, 255, .25) 2px, transparent 3px);
+    background-size:
+        550px 550px,
+        350px 350px,
+        250px 250px,
+        450px 450px,
+        300px 300px,
+        200px 200px;
+    background-position:
+        0 0,
+        40px 60px,
+        130px 270px,
+        200px 100px,
+        80px 180px,
+        300px 50px;
+    animation: snow 20s linear infinite;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+@keyframes snow {
+    0% {
+        background-position:
+            0 0,
+            40px 60px,
+            130px 270px,
+            200px 100px,
+            80px 180px,
+            300px 50px;
+    }
+
+    100% {
+        background-position:
+            550px 1000px,
+            400px 400px,
+            300px 300px,
+            650px 1100px,
+            380px 480px,
+            500px 350px;
+    }
+}
+
+.hero-container-contest {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    height: 70%;
+}
+
+.hero-content-contest {
+    text-align: left;
+}
+
+.contest-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.contest-hero .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--contest-primary);
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-features {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+    display: flex;
+    gap: 30px;
+}
+
+.hero-features li {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero-features i {
+    color: var(--contest-primary);
+    font-size: 1.2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.hero-image-contest {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-image-contest img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Countdown */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 1px solid var(--contest-primary);
+    min-width: 100px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.countdown-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--contest-primary);
+    display: block;
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: white;
+    margin-top: 8px;
+    display: block;
+}
+
+/* Buttons */
+.btn-contest {
+    background: var(--contest-secondary);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+    border: 2px solid var(--contest-secondary);
+    box-shadow: 0 5px 20px rgba(0, 128, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.btn-contest:hover {
+    background: transparent;
+    color: var(--contest-secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 128, 0, 0.5);
+}
+
+.btn-contest-outline {
+    background: transparent;
+    color: white;
+    padding: 15px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+    border: 2px solid white;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.btn-contest-outline:hover {
+    background: white;
+    color: var(--contest-dark);
+    transform: translateY(-3px);
+}
+
+/* Steps Section */
+.contest-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0;
+}
+
+.step-card {
+    text-align: center;
+    padding: 20px 5px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    border-bottom: 5px solid var(--contest-secondary);
+    position: relative;
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+}
+
+.step-number {
+    background: var(--contest-secondary);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 2;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+}
+
+.step-date {
+    color: var(--contest-primary);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: block;
+}
+
+.step-card h3 {
+    color: var(--contest-dark);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+/* Présentation Vidéo */
+.presentation-video-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.video-frame {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 8px;
+    background: linear-gradient(135deg, var(--contest-secondary) 0%, var(--contest-primary) 100%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.video-frame video {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    display: block;
+    background: #000;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+}
+
+.video-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--contest-secondary), var(--contest-primary));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+
+/* Prizes Section */
+.prizes-section {
+    padding: 80px 20px;
+    background-color: white;
+    text-align: center;
+}
+
+.section-title h2 {
+    color: var(--contest-secondary);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.prizes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.prize-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+}
+
+.prize-card:hover {
+    transform: scale(1.02);
+}
+
+.prize-img {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.prize-rank {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--contest-primary);
+    color: var(--contest-dark);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.prize-content {
+    padding: 25px;
+}
+
+.prize-value {
+    color: var(--contest-secondary);
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Video Section */
+.video-section {
+    padding: 80px 20px;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.video-placeholder {
+    background: #000;
+    height: 200px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.video-placeholder::after {
+    content: '▶';
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+}
+
+/* Form Section */
+.participation-section {
+    padding: 80px 20px;
+    background: var(--contest-dark);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.participation-form-container {
+    max-width: 700px;
+    margin: 20px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    color: var(--contest-text);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.participation-form-container h2 {
+    color: var(--contest-secondary);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Form Progress Bar */
+.form-progress {
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.form-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--contest-secondary), var(--contest-primary));
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Searchable Select Styles */
+.searchable-select {
+    position: relative;
+}
+
+.searchable-select input {
+    width: 100%;
+    cursor: pointer;
+}
+
+.options-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    margin-top: 5px;
+}
+
+.options-container.active {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.option-group-label {
+    padding: 10px 15px;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: var(--contest-secondary);
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+}
+
+.option-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.option-item:hover {
+    background: #e8f5e9;
+    color: var(--contest-secondary);
+    padding-left: 25px;
+}
+
+.option-item.selected {
+    background: var(--contest-secondary);
+    color: white;
+}
+
+.no-results {
+    padding: 15px;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+/* Toast Notification */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 17px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+.toast.success {
+    background-color: #28a745;
+}
+
+.toast.error {
+    background-color: #dc3545;
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        max-width: 90%;
+    }
+
+    .contest-hero {
+        height: auto;
+        padding-bottom: 60px;
+    }
+
+    .hero-container-contest {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+        height: auto;
+    }
+
+    .hero-content-contest {
+        text-align: center;
+        margin-top: 80px;
+    }
+
+    .contest-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .contest-steps,
+    .prizes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-features {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .hero-features li {
+        font-size: 0.8rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-image-contest img {
+        max-width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .countdown-container {
+        flex-wrap: wrap;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .countdown-item {
+        padding: 10px 15px;
+        min-width: 70px;
+    }
+
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+
+    .countdown-label {
+        font-size: 0.7rem;
+    }
+
+    .step-number {
+        margin: 0 auto 20px;
+    }
+
+    .step-card {
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .contest-steps,
+    .prizes-grid {
+        padding: 0;
+    }
+
+    .step-card,
+    .prize-card {
+        padding: 20px 0;
+        width: 100%;
+    }
+
+    .participation-section {
+        padding: 0;
+    }
+}
