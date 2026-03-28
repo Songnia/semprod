@@ -12,7 +12,7 @@ const productsData = [
         },
         description: {
             fr: "Huile Précieuse de la graine de courge à coque dure, ou graine de Courge tropicale, 'Pistache africaine' nom scientifique cucumeropsis manii, 100% Naturel, Biologique, Extra Vierge, Pression à Froid ",
-            en: "Precious oil skin/hair of Hard-shelled Pumpkin Seed, tropicale Pumpkin Seed, de'Pistachio ', Pepins de Courge, or finally cucumeropsis manii 'Pistachio' long grain of Cameroon 100% Natural, Organic + Extra Virgin Cold Pressure Produced by: SEM Production"
+            en: "Precious oil for skin/hair from hard-shelled Tropical Pumpkin seeds, 'African Pistachio', scientific name Cucumeropsis Mannii. 100% Natural, Organic, Extra Virgin, Cold Pressed. Produced by: SEM Production"
         },
         ingredient: {
             fr: [
@@ -22,9 +22,9 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
-                "",
+                "100% Organic Tropical Pumpkin Seeds ''Pistachio''",
+                "Extra Virgin Cold Pressed",
+                "No additives",
                 ""
             ]
         },
@@ -125,9 +125,9 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
-                "",
+                "100% Organic Tropical Pumpkin Seeds ''Pistachio''",
+                "Extra Virgin Cold Pressed",
+                "No additives",
                 ""
             ]
         },
@@ -245,8 +245,12 @@ const productsData = [
 
             },
             en: {
-                "Calibrated Almond": "",
-                "Cooking salt": ""
+                "Plant proteins(g)": "41",
+                "Lipids(g)": "47",
+                "Iron(mg)": "11",
+                "Zinc(mg)": "5.4",
+                "Magnesium(mg)": "463",
+                "Sugar": "0"
             }
         },
         vertues: {
@@ -408,8 +412,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -443,8 +447,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -458,9 +462,9 @@ const productsData = [
                 ""
             ],
             en: [
-                "Add a crunchy, tasteful touch to your ice creams, cakes, yogurts, fruit salads...",
-                "",
-                "",
+                "Appetizer",
+                "Add a crunchy and tasty touch to your ice cream, cakes, yogurts, fruit salads",
+                "Porridge, Cereals",
                 ""
             ]
         },
@@ -503,8 +507,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -539,8 +543,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -554,9 +558,9 @@ const productsData = [
                 ""
             ],
             en: [
-                "Add a crunchy, tasteful touch to your ice creams, cakes, yogurts, fruit salads...",
-                "",
-                "",
+                "Appetizer",
+                "Add a crunchy and tasty touch to your ice cream, cakes, yogurts, fruit salads",
+                "Porridge, Cereals",
                 ""
             ]
         },
@@ -599,8 +603,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -634,8 +638,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -649,9 +653,9 @@ const productsData = [
                 ""
             ],
             en: [
-                "Add a crunchy, tasteful touch to your ice creams, cakes, yogurts, fruit salads...",
-                "",
-                "",
+                "Appetizer",
+                "Add a crunchy and tasty touch to your ice cream, cakes, yogurts, fruit salads",
+                "Porridge, Cereals",
                 ""
             ]
         },
@@ -727,8 +731,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -741,8 +745,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -788,9 +792,9 @@ const productsData = [
                 "Farine de mais"
             ],
             en: [
-                "",
-                "",
-                "",
+                "Ngon Tropical Pumpkin Seeds",
+                "Fine salt",
+                "No preservatives",
                 ""
             ]
         },
@@ -862,8 +866,8 @@ const productsData = [
                 "Coupe faim",
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -907,9 +911,9 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
-                "",
+                "Ngon Tropical Pumpkin Seeds",
+                "Fine salt",
+                "No preservatives",
                 ""
             ]
         },
@@ -953,8 +957,8 @@ const productsData = [
                 "Sauces"
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -998,9 +1002,9 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
-                "",
+                "Ngon Tropical Pumpkin Seeds",
+                "Fine salt",
+                "No preservatives",
                 ""
             ]
         },
@@ -1034,8 +1038,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -1048,8 +1052,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -1094,10 +1098,11 @@ const productsData = [
                 "Eau"
             ],
             en: [
-                "",
-                "",
-                "",
-                ""
+                "Organic Oil",
+                "of tropical pumpkin seeds (African pistachios)",
+                "Shea butter, Palm kernel oil, Palm oil",
+                "Soda",
+                "Water"
             ]
         },
         composition: {
@@ -1138,8 +1143,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -1173,17 +1178,17 @@ const productsData = [
         },
         description: {
             fr: "Farine allégée de 'ngon' de la graine de courge à coque dure, graine de Courge tropicale, de 'Pistache', de Pepins de Courge, ou enfin cucumeropsis manii 'Pistache' longs grains du Cameroun 100% Naturel, Biologique + Matière grasse:-85% Superaliment Protéines et minéraux Produit par: SEM Production",
-            en: "Light flour of 'ngon' of Hard-shelled Pumpkin Seed, tropicale Pumpkin Seed, de'Pistachio ', Pepins de Courge, or finally cucumeropsis manii 'Pistachio' long grain of Cameroon 100% Natural, Organic + Butterfat:-85 Superfood Proteins and minerals Produced by: SEM Production"
+            en: "Light flour of 'ngon' from hard-shelled Tropical Pumpkin seeds, 'Pistachio', or finally Cucumeropsis Mannii 'Pistachio' long grain from Cameroon. 100% Natural, Organic + Fat-reduced -85%. Superfood rich in Proteins and minerals. Produced by: SEM Production"
         },
         ingredient: {
             fr: [
-                "",
+                "100% graine de courge tropicale Biologique 'Pistache africaine'",
                 "",
                 "",
                 ""
             ],
             en: [
-                "",
+                "100% Organic Tropical Pumpkin Seeds 'African Pistachio'",
                 "",
                 "",
                 ""
@@ -1270,7 +1275,7 @@ const productsData = [
         },
         description: {
             fr: "Amandes de 'ngon' de la graine de courge à coque dure, graine de Courge tropicale, de 'Pistache', de Pepins de Courge, ou enfin cucumeropsis manii 'Pistache' longs grains du Cameroun 100% Naturel, Biologique + Graines sélectionnées et calibrées Partenaire de la bonne santé Produit par: SEM Production",
-            en: "Almonds from 'ngon' of Hard-shelled Pumpkin Seed, tropicale Pumpkin Seed, de'Pistachio ', Pepins de Courge, or finally cucumeropsis manii 'Pistachio' long grain of Cameroon 100% Natural, Organic + Selected and calibrated seeds Partner of good health Produced by: SEM Production"
+            en: "Almonds of 'ngon' from hard-shelled Tropical Pumpkin seeds, 'Pistachio', or finally Cucumeropsis Mannii 'Pistachio' long grain from Cameroon. 100% Natural, Organic. Selected and calibrated seeds. Partner of good health. Produced by: SEM Production"
         },
         ingredient: {
             fr: [
@@ -1280,7 +1285,7 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
+                "100% Organic Tropical Pumpkin Seeds 'African Pistachio'",
                 "",
                 "",
                 ""
@@ -1361,8 +1366,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -1395,8 +1400,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -1409,8 +1414,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]
@@ -1454,8 +1459,8 @@ const productsData = [
                 ""
             ],
             en: [
-                "",
-                "",
+                "Organic African pistachio seeds, selected and calibrated 100%",
+                "Cane sugar",
                 "",
                 ""
             ]

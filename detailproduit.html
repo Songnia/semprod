@@ -435,8 +435,8 @@
             <div class="icon-action">
                 <div class="lang-switch dropdown">
                     <a href="#" class="current-lang-display">
-                        <span id="current-lang-icon">🇫🇷</span> 
-                        <span id="current-lang-text">FR</span> 
+                        <span id="current-lang-icon">🇫🇷</span>
+                        <span id="current-lang-text">FR</span>
                         <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
                     </a>
                     <ul class="dropdown-menu">
@@ -444,7 +444,7 @@
                         <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="cart-icon" onclick="onlyopenCart()">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count" id="cart-count">0</span>
@@ -508,7 +508,7 @@
                     </div>
                     
                     <div class="product-info">
-                        <h1 id="product-title" class="product-title">${product.names[lang] || product.names.fr} ${product.formats[0].volume}</h1>
+                        <h1 id="product-title" class="product-title">${product.names[lang] || product.names.fr}${product.formats && product.formats[0] && product.formats[0].volume ? ' ' + product.formats[0].volume : ''}</h1>
                         <p class="product-subtitle" id="product-subtitle">${product.brand[lang] || product.brand.fr}</p>
                         
                         <!--<p class="no-reviews">Soyez le premier à commenter ce produit</p>-->
@@ -560,7 +560,7 @@
                     <div class="tab-content">
                         <div class="tab-panel active" id="description-panel">
                             <div class="description-content">
-                                <h2>${product.names[lang] || product.names.fr} ${product.formats[0].volume}</h2>
+                                <h2>${product.names[lang] || product.names.fr}${product.formats && product.formats[0] && product.formats[0].volume ? ' ' + product.formats[0].volume : ''}</h2>
                                 <p>${product.description[lang] || product.description.fr}</p>
                             </div>
                         </div>
@@ -760,59 +760,56 @@
     </div>
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="footer-logo">SEM <span>PRODUCTION</span></div>
-                    <p>Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies
-                        innovantes tout en préservant les traditions.</p>
-                    <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
-                        <i class="fab fa-whatsapp"> </i> Nous laisser un message
-                    </a>
-                </div>
-                <div class="footer-column">
-                    <h3>Navigation Rapide</h3>
-                    <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
-                        <li><a href="index.html#products-section">Nos Produits</a></li>
-                        <li><a href="evenements.html">Nos Événements</a></li>
-                        <li><a href="technologie.html">Notre Technologie</a></li>
-                        <li><a href="videos.html">Nos Vidéos</a></li>
-                        <li><a href="photos.html">Nos Photos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Coordonnées</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
-                        <li><i class="fas fa-phone"></i> +237 681 467 993</li>
-                        <li><i class="fas fa-phone"></i> +237 699 323 761</li>
-                        <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
-                    </ul>
-                    <div class="container-social-icons">
-                        <div class="container-icon">
-                            <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
-                        </div>
-                        <div class="container-icon">
-                            <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                            <a href="https://wa.me/237699323761">+237 699 323 761</a>
-                        </div>
-
-                        <!--<a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>-->
-                        <!--<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>-->
-                        <!-- <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>-->
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SEM <span>PRODUCTION</span></div>
+                <p data-i18n="footer.desc">Depuis 2017, nous créons des produits naturels de qualité en utilisant des technologies
+                    innovantes tout en préservant les traditions.</p>
+                <a href="https://wa.me/237699323761" class="btn" style="margin-top: 15px;">
+                    <i class="fab fa-whatsapp"> </i> <span data-i18n="footer.msg">Nous laisser un message</span>
+                </a>
+            </div>
+            <div class="footer-column">
+                <h3 data-i18n="footer.nav">Navigation Rapide</h3>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+                    <li><a href="qui-sommes-nous.html" data-i18n="nav.about">Qui sommes-nous ?</a></li>
+                    <li><a href="index.html#products-section" data-i18n="nav.products">Nos Produits</a></li>
+                    <li><a href="evenements.html" data-i18n="nav.events">Nos Événements</a></li>
+                    <li><a href="technologie.html" data-i18n="nav.tech">Notre Technologie</a></li>
+                    <li><a href="videos.html" data-i18n="nav.videos">Nos Vidéos</a></li>
+                    <li><a href="photos.html" data-i18n="nav.photos">Nos Photos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 data-i18n="footer.contact">Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroun</li>
+                    <li><i class="fas fa-phone"></i> +237 681 467 993</li>
+                    <li><i class="fas fa-phone"></i> +237 699 323 761</li>
+                    <li><a href="mailto:contact@sem-prod.com" class="contact-link">contact@sem-prod.com</a></li>
+                </ul>
+                <div class="container-social-icons">
+                    <div class="container-icon">
+                        <a href="https://www.facebook.com/NgonbySemProduction" class="social-icon"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/NgonbySemProduction">Ngon By Sem Production</a>
+                    </div>
+                    <div class="container-icon">
+                        <a href="https://wa.me/237699323761" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/237699323761">+237 699 323 761</a>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 SEM PRODUCTION. Tous droits réservés. | <a href="#">Mentions légales</a> | <a
-                        href="#">Politique de confidentialité</a></p>
-            </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SEM PRODUCTION. <span data-i18n="footer.rights">Tous droits réservés.</span> | <a href="#"
+                    data-i18n="footer.legal">Mentions légales</a> | <a href="#" data-i18n="footer.privacy">Politique de
+                    confidentialité</a></p>
+        </div>
+    </div>
+</footer>
     <script src="js/script.js"></script>
 </body>
 
