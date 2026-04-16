@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Définition de l'icône du site (favicon) -->
-    <link rel="icon" type="image/png" href="assets/images/icon-logo.png">
+    <link rel="icon" type="image/webp" href="assets/images/icon-logo.webp">
 
+    <!-- Scripts product data (doit être chargé avant i18n.js) -->
+    <script src="js/product-data.js"></script>
     <!-- Scripts i18n -->
     <script src="js/i18n-data.js"></script>
     <script src="js/i18n.js"></script>
 
     <style>
-        .lang-switch {
+       /* .lang-switch {
             display: flex;
             align-items: center;
             margin-right: 15px;
@@ -38,7 +40,7 @@
         .lang-switch span {
             color: #fff;
             opacity: 0.5;
-        }
+        }*/
     </style>
 </head>
 
@@ -47,7 +49,7 @@
     <!-- Header -->
     <header id="header-id">
         <div class="container header-container">
-            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+            <a href="index.html" class="logo"><img src="assets/images/logo.webp" alt=""></a>
             <nav>
                 <ul>
                     <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
@@ -120,13 +122,13 @@
             <div class="icon-action">
                 <div class="lang-switch dropdown">
                     <a href="#" class="current-lang-display">
-                        <span id="current-lang-icon">🇫🇷</span> 
-                        <span id="current-lang-text">FR</span> 
+                        <span id="current-lang-icon">🇬🇧</span> 
+                        <span id="current-lang-text">EN</span>
                         <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
                         <li><a href="#" class="lang-selector" data-lang="en"><span>🇬🇧</span> English</a></li>
+                        <li><a href="#" class="lang-selector" data-lang="fr"><span>🇫🇷</span> Français</a></li>
                     </ul>
                 </div>
                 <div class="cart-icon" onclick="onlyopenCart()">
@@ -143,8 +145,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="content-image-etoiles">
-            <a href="index.html" class="logo logoeurogon"><img src="assets/images/logoNgon.png" alt=""></a>
-            <img id="cinq-etoiles" src="assets/images/5etoiles-ok.png" alt="">
+            <a href="index.html" class="logo logoeurogon"><img src="assets/images/logoNgon.webp" alt=""></a>
+            <img id="cinq-etoiles" src="assets/images/5etoiles-ok.webp" alt="">
         </div>
         <div class="container hero-container">
             <div class="hero-content">
@@ -162,8 +164,9 @@
                 </p>
                 <!--<a href="#products-section" class="btn">Découvrir nos produits</a>-->
             </div>
-            <div class="hero-image" style="background-image: url(assets/images/Pack_Complet.png) ; background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%;">
-                <!--<img src="/assets/images/Pack_Complet.png" alt="SEM PRODUCTION - Produits naturels">-->
+            <div class="hero-image"
+                style="background-image: url(assets/images/Pack_Complet.webp) ; background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%;">
+                <!--<img src="/assets/images/Pack_Complet.webp" alt="SEM PRODUCTION - Produits naturels">-->
             </div>
         </div>
     </section>
@@ -178,13 +181,13 @@
             <div class="rubrique-item large">
                 <a href="">
                     <div class="promo-text">
-                        <div class="product-img" style="background-image: url(assets/images/calebasse-pistache.png) ;">
+                        <div class="product-img" style="background-image: url(assets/images/calebasse-pistache.webp) ;">
                         </div>
                         <h2 data-i18n="section.path.seed">Notre Graine</h2>
                         <div class="go-corner">
                             <div class="go-arrow">→</div>
                         </div>
-                        <!--<img src="assets/images/calebasse-pistache.png" alt="" class="product-img">-->
+                        <!--<img src="assets/images/calebasse-pistache.webp" alt="" class="product-img">-->
                     </div>
                 </a>
             </div>
@@ -192,7 +195,7 @@
                 <a href="technologie.html">
                     <div class="promo-text">
                         <div class="product-img"
-                            style="background-image: url(assets/images/machine-a-decortiquer.png) ;"></div>
+                            style="background-image: url(assets/images/machine-a-decortiquer.webp) ;"></div>
                         <h2 data-i18n="section.path.tech">Notre Technologie</h2>
                         <div class="go-corner">
                             <div class="go-arrow">→</div>
@@ -203,7 +206,7 @@
             <div class="rubrique-item">
                 <a href="#products-section">
                     <div class="promo-text">
-                        <div class="product-img" style="background-image: url(assets/images/Pack_Complet.png) ;"></div>
+                        <div class="product-img" style="background-image: url(assets/images/Pack_Complet.webp) ;"></div>
                         <h2 data-i18n="section.path.products">20 Produits</h2>
                         <div class="go-corner">
                             <div class="go-arrow">→</div>
@@ -214,7 +217,7 @@
             <div class="rubrique-item">
                 <a href="espritngon.html#histoire-et-biens-faits">
                     <div class="promo-text">
-                        <div class="product-img" style="background-image: url(assets/images/famille-africaine6.png) ;">
+                        <div class="product-img" style="background-image: url(assets/images/famille-africaine6.webp) ;">
                         </div>
                         <h2 data-i18n="section.path.wellbeing">Votre Bien-Etre</h2>
                     </div>
@@ -235,35 +238,6 @@
                     const product = productsData;
                     console.log(product)
                     const container = document.getElementById('products-grid');
-                    /*if (product) {
-                        container.innerHTML = product.map(product =>`
-                            <div class="product-card" data-category="nutri-Sante">
-                                <a href=" detailproduit.html?id=${product.id}">
-                                <div class="product-img" style="background-image: url(${product.images[0]});">
-                                    <div class="product-badge">BIO</div>
-                                </div></a>
-                                <div class="product-content">
-                                    <h3 class="product-name">${product.names.fr}</h3>
-                                    <p class="product-description">${product.brand.fr}</p>
-                                    
-                                    <div class="product-price">
-                                    ${product.formats[0].price} <span class="price-currency">FCFA</span>
-                                    </div>
-                                    
-                                    <div class="product-actions">
-                                        <button class="btn btn-primary btn-cart add-to-cart" data-product="${product.names.fr}" data-price="${product.formats[0].price}">
-                                            <i class="fas fa-shopping-cart"></i> 
-                                        </button>
-                                        <button class="btn btn-secondary btn-checkout-platform" onclick="commandeDirect('${product.names.fr.replace(/'/g, "\\'")}', ${product.formats[0].price})"  data-product="${product.names.fr}" data-price="${product.formats[0].price}">
-                                            <i class="fab fa-whatsapp"></i> Commander
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        `).join('');
-                        return;
-                    }*/
                     if (product) {
                         const lang = localStorage.getItem('siteLang') || 'fr';
                         container.innerHTML = product.map(product => {
@@ -320,6 +294,26 @@
                 }
                 // Charger les détails du produit au chargement de la page
                 document.addEventListener('DOMContentLoaded', displayProductDetails);
+
+                // Re-render product cards whenever the language changes (no page refresh needed)
+                window.addEventListener('languageChanged', function (e) {
+                    displayProductDetails();
+                    // Re-apply i18n translations to the newly rendered dynamic elements
+                    // (data-i18n attributes inside the cards like badge.bio, btn.add_cart, etc.)
+                    if (window.translations && window.applyTranslations) {
+                        window.applyTranslations(e.detail.language);
+                    } else {
+                        // Fallback: manually apply translations to data-i18n elements
+                        const lang = e.detail.language;
+                        const dict = window.translations && window.translations[lang];
+                        if (dict) {
+                            document.querySelectorAll('[data-i18n]').forEach(el => {
+                                const key = el.getAttribute('data-i18n');
+                                if (dict[key]) el.innerHTML = dict[key];
+                            });
+                        }
+                    }
+                });
             </script>
             <div class="products-grid" id="products-grid">
                 <!-- Produit 1 -->
@@ -502,6 +496,5 @@
 </footer>
 
 <script src="js/script.js" defer></script>
-<script src="js/product-data.js"></script>
 
 </html>

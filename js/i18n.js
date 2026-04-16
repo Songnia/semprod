@@ -35,10 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentLangText = document.getElementById("current-lang-text");
         if (currentLangIcon && currentLangText) {
             if (lang === 'fr') {
-                currentLangIcon.textContent = '\uD83C\uDDEB\uD83C\uDDF7'; // 🇫🇷
+                // Site en français → drapeau anglais (langue cible), texte "FR" (langue active)
+                currentLangIcon.textContent = '\uD83C\uDDEC\uD83C\uDDE7'; // 🇬🇧
                 currentLangText.textContent = 'FR';
             } else if (lang === 'en') {
-                currentLangIcon.textContent = '\uD83C\uDDEC\uD83C\uDDE7'; // 🇬🇧
+                // Site en anglais → drapeau français (langue cible), texte "EN" (langue active)
+                currentLangIcon.textContent = '\uD83C\uDDEB\uD83C\uDDF7'; // 🇫🇷
                 currentLangText.textContent = 'EN';
             }
         }

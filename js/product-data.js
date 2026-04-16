@@ -93,9 +93,9 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/huille-sante-ngon-250ml.png",
-            "assets/images/Produits/agriculture-biologique.jpg",
-            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).jpg"
+            "assets/images/Produits/huille-sante-ngon-250ml.webp",
+            "assets/images/Produits/agriculture-biologique.webp",
+            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).webp"
         ],
         formats: [
             { volume: "250ml", price: "9000" }
@@ -196,9 +196,9 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/pack-huille-sante-ngon-1l.png",
-            "assets/images/Produits/agriculture-biologique.jpg",
-            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).jpg"
+            "assets/images/Produits/pack-huille-sante-ngon-1l.webp",
+            "assets/images/Produits/agriculture-biologique.webp",
+            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).webp"
         ],
         formats: [
             { volume: "", price: "34000" }
@@ -293,9 +293,9 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/apero-ngon.png",
-            "assets/images/Produits/agriculture-biologique.jpg",
-            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).jpg"
+            "assets/images/Produits/apero-ngon.webp",
+            "assets/images/Produits/agriculture-biologique.webp",
+            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).webp"
         ],
         formats: [
             { volume: "220g", price: "2800" }
@@ -381,7 +381,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/roasty-ngon.png",
+            "assets/images/Produits/roasty-ngon.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -476,7 +476,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/kara-ngon-250g.jpg",
+            "assets/images/Produits/kara-ngon-250g.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -572,7 +572,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/kara-ngon-200g.jpg",
+            "assets/images/Produits/kara-ngon-200g.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -667,7 +667,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/kara-ngon-50g.jpg",
+            "assets/images/Produits/kara-ngon-50g.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -759,7 +759,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/cookies-ngon.jpg",
+            "assets/images/Produits/cookies-ngon.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -880,7 +880,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/sable-ngon.png",
+            "assets/images/Produits/sable-ngon.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -971,7 +971,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/patis-ngon.png",
+            "assets/images/Produits/patis-ngon.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -1066,7 +1066,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/huille-beaute-ngon.png",
+            "assets/images/Produits/huille-beaute-ngon.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -1157,7 +1157,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/savon-karite-ngon.png",
+            "assets/images/Produits/savon-karite-ngon.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -1254,9 +1254,9 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/farine-ngon.png",
-            "assets/images/Produits/agriculture-biologique.jpg",
-            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).jpg"
+            "assets/images/Produits/farine-ngon.webp",
+            "assets/images/Produits/agriculture-biologique.webp",
+            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).webp"
         ],
         formats: [
             { weight: "", price: "" }
@@ -1335,9 +1335,9 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/amande-ngon.png",
-            "assets/images/Produits/agriculture-biologique.jpg",
-            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).jpg"
+            "assets/images/Produits/amande-ngon.webp",
+            "assets/images/Produits/agriculture-biologique.webp",
+            "assets/images/Produits/EkoMarketHub Made In Cameroon 266(1).webp"
         ],
         formats: [
             { volume: "5Litre/3Kg", price: "" }
@@ -1428,7 +1428,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/machine-a-decortiquer.png",
+            "assets/images/Produits/machine-a-decortiquer.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],
@@ -1504,7 +1504,7 @@ const productsData = [
             }
         ],
         images: [
-            "assets/images/Produits/pistache-vraque.png",
+            "assets/images/Produits/pistache-vraque.webp",
             "assets/images/Produits/",
             "assets/images/Produits/"
         ],

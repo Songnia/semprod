@@ -177,10 +177,10 @@
             box-shadow: var(--shadow);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
+            transform: translateY(-20px);
             transition: var(--transition);
             z-index: 100;
-            display: felx;
+            display: flex;
             flex-direction: column;
         }
 
@@ -250,13 +250,17 @@
 
         .lang-switch .dropdown-menu {
             min-width: 150px;
-            transform: translateX(-30%);
+            transform: translateX(-30%) translateY(-20px);
             top: 100%;
             margin-top: 10px;
             border-radius: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             border: 1px solid #eee;
+        }
+
+        .lang-switch:hover .dropdown-menu {
+            transform: translateX(-30%) translateY(0);
         }
 
         .lang-switch .lang-selector {
@@ -1751,19 +1755,33 @@
             .dropdown-menu {
                 display: none;
                 position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-20px);
                 box-shadow: none;
                 margin-top: 10px;
                 margin-left: 15px;
+                transition: var(--transition);
             }
 
-            .dropdown.active .dropdown-menu,
-            .lang-switch.active .dropdown-menu {
+            .dropdown.active > .dropdown-menu,
+            .lang-switch.active > .dropdown-menu {
                 display: block;
                 opacity: 1;
                 visibility: visible;
+                transform: translateY(0);
+            }
+
+            /* Le menu langue reste en position absolue, ancré à droite de l'écran */
+            .lang-switch .dropdown-menu {
+                position: absolute;
+                right: 0;
+                left: auto;
+                transform: translateY(-20px);
+                min-width: 150px;
+            }
+
+            .lang-switch.active > .dropdown-menu {
                 transform: translateY(0);
             }
 
@@ -2032,10 +2050,16 @@
 
             .dropdown-menu {
                 display: none;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: var(--transition);
             }
 
-            .lang-switch.active .dropdown-menu {
+            .lang-switch.active .dropdown-menu,
+            .dropdown.active .dropdown-menu {
                 display: block !important;
+                opacity: 1;
+                transform: translateY(0);
             }
 
             .about-content,

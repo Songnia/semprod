@@ -369,7 +369,7 @@
 
     header.innerHTML = `
         <div class="container header-container">
-            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
+            <a href="index.html" class="logo"><img src="assets/images/logo.webp" alt=""></a>
             <nav>
                 <ul>
                     <li><a href="index.html">Accueil</a></li>
